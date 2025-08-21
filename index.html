@@ -204,6 +204,9 @@
 </head>
 <body>
     <div class="container">
+        <div style="text-align: center; margin-bottom: 25px;">
+            <img src="logo.png" alt="AMG Logo" style="max-width: 200px; height: auto;">
+        </div>
         <h1>Labor % Calculator</h1>
         <p class="subtitle">Calculate labor percentage by park location</p>
         
@@ -226,8 +229,8 @@
         </div>
 
         <div class="form-group">
-            <label for="laborTotal">Labor Total ($)</label>
-            <input type="number" id="laborTotal" placeholder="Enter total labor cost" step="0.01" oninput="calculatePercentage()">
+            <label for="laborHours">Labor Hours Total</label>
+            <input type="number" id="laborHours" placeholder="Enter total labor hours" step="0.01" oninput="calculatePercentage()">
         </div>
 
         <div class="form-group">
@@ -239,6 +242,10 @@
             <div class="result-label">Labor Percentage</div>
             <div class="result-value" id="result">--%</div>
             <div class="status-message" id="statusMessage"></div>
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
+                <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Calculated Labor Cost</div>
+                <div style="font-size: 18px; font-weight: 600; color: #333;" id="laborCost">$0.00</div>
+            </div>
         </div>
     </div>
 
@@ -259,13 +266,28 @@
         }
 
         function calculatePercentage() {
-            const laborTotal = parseFloat(document.getElementById('laborTotal').value) || 0;
+            const laborHours = parseFloat(document.getElementById('laborHours').value) || 0;
             const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+            const parkSelect = document.getElementById('park');
+            const hourlyRate = parseFloat(parkSelect.value) || 0;
             const resultElement = document.getElementById('result');
             const resultBox = document.getElementById('resultBox');
             const statusMessage = document.getElementById('statusMessage');
+            const laborCostElement = document.getElementById('laborCost');
             
-            if (revenue > 0 && laborTotal >= 0) {
+            if (hourlyRate === 0) {
+                resultElement.textContent = '--%';
+                laborCostElement.textContent = '$0.00';
+                resultBox.classList.remove('warning', 'good');
+                statusMessage.textContent = 'Please select a park location';
+                statusMessage.style.color = '#666';
+                return;
+            }
+            
+            const laborTotal = laborHours * hourlyRate;
+            laborCostElement.textContent = '$' + laborTotal.toFixed(2);
+            
+            if (revenue > 0 && laborHours >= 0) {
                 const percentage = (laborTotal / revenue) * 100;
                 resultElement.textContent = percentage.toFixed(2) + '%';
                 
@@ -285,15 +307,15 @@
                     statusMessage.textContent = '✓ Within target range';
                     statusMessage.style.color = '#3b82f6';
                 }
-            } else {
+            } else if (hourlyRate > 0) {
                 resultElement.textContent = '--%';
-                resultBox.classList.remove('warning', 'good');
-                statusMessage.textContent = '';
+                statusMessage.textContent = 'Enter hours and revenue to calculate';
+                statusMessage.style.color = '#666';
             }
         }
 
         // Format number inputs to show commas while typing
-        document.getElementById('laborTotal').addEventListener('blur', function() {
+        document.getElementById('laborHours').addEventListener('blur', function() {
             if (this.value) {
                 this.value = parseFloat(this.value).toFixed(2);
             }
