@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Labor Percentage Calculator</title>
     
-    <!-- Google Analytics -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KRXEDPCMY"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -384,6 +384,8 @@
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             if (input === PASSWORD) {
+                sessionStorage.setItem('amgAuthenticated', 'true');
+                
                 // Track successful login
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'login', {
@@ -391,18 +393,19 @@
                         'event_label': 'success'
                     });
                 }
-                sessionStorage.setItem('amgAuthenticated', 'true');
+                
                 showCalculator();
             } else {
-                // Track failed login
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                
+                // Track failed login attempt
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'login', {
                         'event_category': 'authentication',
                         'event_label': 'failed'
                     });
                 }
-                document.getElementById('errorMessage').style.display = 'block';
-                document.getElementById('passwordInput').value = '';
             }
         }
 
@@ -410,10 +413,18 @@
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('calculatorScreen').style.display = 'block';
             document.getElementById('logoutBtn').style.display = 'block';
+            
+            // Track calculator view
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    'page_title': 'Labor Calculator',
+                    'page_path': '/calculator'
+                });
+            }
         }
 
         function logout() {
-            // Track logout
+            // Track logout event
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'logout', {
                     'event_category': 'authentication'
@@ -466,48 +477,52 @@
                 // Remove all status classes first
                 resultBox.classList.remove('warning', 'good', 'caution');
                 
-                // Determine status for tracking
-                let status = '';
+                // Track calculation and determine performance tier
+                let performanceTier = '';
+                const parkSelect = document.getElementById('park');
+                const parkName = parkSelect.options[parkSelect.selectedIndex].text;
                 
                 // Add appropriate status class and message based on percentage
                 if (percentage <= 15) {
                     resultBox.classList.add('good');
                     statusMessage.textContent = '✓ Excellent - Below 15%';
                     statusMessage.style.color = '#22c55e';
-                    status = 'excellent';
+                    performanceTier = 'Excellent';
                 } else if (percentage <= 18) {
                     resultBox.classList.add('good');
                     statusMessage.textContent = '✓ On Target - Meeting 18% goal';
                     statusMessage.style.color = '#22c55e';
-                    status = 'on_target';
+                    performanceTier = 'On Target';
                 } else if (percentage <= 22) {
                     resultBox.classList.add('caution');
                     statusMessage.textContent = '⚠️ Slightly Above Target';
                     statusMessage.style.color = '#f59e0b';
-                    status = 'slightly_above';
+                    performanceTier = 'Above Target';
                 } else if (percentage <= 28) {
                     resultBox.classList.add('warning');
                     statusMessage.textContent = '⚠️ High - Needs Attention';
                     statusMessage.style.color = '#ef4444';
-                    status = 'high';
+                    performanceTier = 'High';
                 } else {
                     resultBox.classList.add('warning');
                     statusMessage.textContent = '🚨 Critical - Significantly Over';
                     statusMessage.style.color = '#dc2626';
-                    status = 'critical';
+                    performanceTier = 'Critical';
                 }
                 
-                // Track calculation
-                const parkSelect = document.getElementById('park');
-                const parkName = parkSelect.selectedIndex > 0 ? parkSelect.options[parkSelect.selectedIndex].text : 'Not Selected';
-                
+                // Track the calculation in Google Analytics
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'calculation_performed', {
                         'event_category': 'calculator',
                         'event_label': parkName,
-                        'value': Math.round(percentage),
-                        'custom_parameter_1': status,
-                        'custom_parameter_2': percentage.toFixed(2)
+                        'custom_parameter': {
+                            'park': parkName,
+                            'percentage': percentage.toFixed(2),
+                            'performance_tier': performanceTier,
+                            'labor_hours': laborHours,
+                            'revenue': revenue,
+                            'labor_cost': laborTotal.toFixed(2)
+                        }
                     });
                 }
             } else if (hourlyRate > 0) {
