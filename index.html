@@ -31,69 +31,6 @@
             padding: 20px;
         }
 
-        .login-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        .login-container h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .login-container p {
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-
-        .login-container input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .login-container input:focus {
-            outline: none;
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
-        }
-
-        .login-container button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .login-container button:hover {
-            transform: translateY(-2px);
-        }
-
-        .error-message {
-            color: #ef4444;
-            margin-top: 10px;
-            font-size: 14px;
-            display: none;
-        }
-
         .container {
             background: white;
             border-radius: 20px;
@@ -102,7 +39,6 @@
             width: 100%;
             max-width: 500px;
             animation: slideIn 0.5s ease-out;
-            display: none;
         }
 
         @keyframes slideIn {
@@ -260,24 +196,6 @@
             font-weight: 600;
         }
 
-        .logout-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -289,7 +207,7 @@
         }
 
         @media (max-width: 480px) {
-            .container, .login-container {
+            .container {
                 padding: 30px 20px;
             }
             
@@ -300,29 +218,11 @@
             .result-value {
                 font-size: 36px;
             }
-
-            .logout-btn {
-                top: 10px;
-                right: 10px;
-                font-size: 12px;
-                padding: 6px 12px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Login Screen -->
-    <div class="login-container" id="loginScreen">
-        <h2>AMG Labor Calculator</h2>
-        <p>Please enter password to continue</p>
-        <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="if(event.key==='Enter') checkPassword()">
-        <button onclick="checkPassword()">Login</button>
-        <div class="error-message" id="errorMessage">Incorrect password. Please try again.</div>
-    </div>
-
-    <!-- Calculator (hidden initially) -->
-    <button class="logout-btn" id="logoutBtn" onclick="logout()" style="display:none;">Logout</button>
-    <div class="container" id="calculatorScreen">
+    <div class="container">
         <div style="text-align: center; margin-bottom: 25px;">
             <img src="logo.png" alt="AMG Logo" style="max-width: 200px; height: auto;">
         </div>
@@ -373,71 +273,15 @@
     </div>
 
     <script>
-        // Simple password protection
-        const PASSWORD = 'amg2025'; // CHANGE THIS TO YOUR DESIRED PASSWORD
-        
-        // Check if already logged in
-        if (sessionStorage.getItem('amgAuthenticated') === 'true') {
-            showCalculator();
-        }
-
-        function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
-            if (input === PASSWORD) {
-                sessionStorage.setItem('amgAuthenticated', 'true');
-                
-                // Track successful login
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'login', {
-                        'event_category': 'authentication',
-                        'event_label': 'success'
-                    });
-                }
-                
-                showCalculator();
-            } else {
-                document.getElementById('errorMessage').style.display = 'block';
-                document.getElementById('passwordInput').value = '';
-                
-                // Track failed login attempt
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'login', {
-                        'event_category': 'authentication',
-                        'event_label': 'failed'
-                    });
-                }
-            }
-        }
-
-        function showCalculator() {
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('calculatorScreen').style.display = 'block';
-            document.getElementById('logoutBtn').style.display = 'block';
-            
-            // Track calculator view
+        // Track page view on load
+        window.addEventListener('load', function() {
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'page_view', {
                     'page_title': 'Labor Calculator',
                     'page_path': '/calculator'
                 });
             }
-        }
-
-        function logout() {
-            // Track logout event
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'logout', {
-                    'event_category': 'authentication'
-                });
-            }
-            
-            sessionStorage.removeItem('amgAuthenticated');
-            document.getElementById('loginScreen').style.display = 'block';
-            document.getElementById('calculatorScreen').style.display = 'none';
-            document.getElementById('logoutBtn').style.display = 'none';
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('errorMessage').style.display = 'none';
-        }
+        });
 
         function updateHourlyRate() {
             const parkSelect = document.getElementById('park');
@@ -446,107 +290,7 @@
             
             if (parkSelect.value) {
                 rateDisplay.style.display = 'block';
-                hourlyRate.textContent = '
-
-        function calculatePercentage() {
-            const laborHours = parseFloat(document.getElementById('laborHours').value) || 0;
-            const revenue = parseFloat(document.getElementById('revenue').value) || 0;
-            const parkSelect = document.getElementById('park');
-            const hourlyRate = parseFloat(parkSelect.value) || 0;
-            const resultElement = document.getElementById('result');
-            const resultBox = document.getElementById('resultBox');
-            const statusMessage = document.getElementById('statusMessage');
-            const laborCostElement = document.getElementById('laborCost');
-            
-            if (hourlyRate === 0) {
-                resultElement.textContent = '--%';
-                laborCostElement.textContent = '$0.00';
-                resultBox.classList.remove('warning', 'good', 'caution');
-                statusMessage.textContent = 'Please select a park location';
-                statusMessage.style.color = '#666';
-                return;
-            }
-            
-            const laborTotal = laborHours * hourlyRate;
-            laborCostElement.textContent = '$' + laborTotal.toFixed(2);
-            
-            if (revenue > 0 && laborHours >= 0) {
-                const percentage = (laborTotal / revenue) * 100;
-                resultElement.textContent = percentage.toFixed(2) + '%';
-                
-                // Remove all status classes first
-                resultBox.classList.remove('warning', 'good', 'caution');
-                
-                // Track calculation and determine performance tier
-                let performanceTier = '';
-                const parkSelect = document.getElementById('park');
-                const parkName = parkSelect.options[parkSelect.selectedIndex].text;
-                
-                // Add appropriate status class and message based on percentage
-                if (percentage <= 15) {
-                    resultBox.classList.add('good');
-                    statusMessage.textContent = '✓ Excellent - Below 15%';
-                    statusMessage.style.color = '#22c55e';
-                    performanceTier = 'Excellent';
-                } else if (percentage <= 18) {
-                    resultBox.classList.add('good');
-                    statusMessage.textContent = '✓ On Target - Meeting 18% goal';
-                    statusMessage.style.color = '#22c55e';
-                    performanceTier = 'On Target';
-                } else if (percentage <= 22) {
-                    resultBox.classList.add('caution');
-                    statusMessage.textContent = '⚠️ Slightly Above Target';
-                    statusMessage.style.color = '#f59e0b';
-                    performanceTier = 'Above Target';
-                } else if (percentage <= 28) {
-                    resultBox.classList.add('warning');
-                    statusMessage.textContent = '⚠️ High - Needs Attention';
-                    statusMessage.style.color = '#ef4444';
-                    performanceTier = 'High';
-                } else {
-                    resultBox.classList.add('warning');
-                    statusMessage.textContent = '🚨 Critical - Significantly Over';
-                    statusMessage.style.color = '#dc2626';
-                    performanceTier = 'Critical';
-                }
-                
-                // Track the calculation in Google Analytics
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'calculation_performed', {
-                        'event_category': 'calculator',
-                        'event_label': parkName,
-                        'custom_parameter': {
-                            'park': parkName,
-                            'percentage': percentage.toFixed(2),
-                            'performance_tier': performanceTier,
-                            'labor_hours': laborHours,
-                            'revenue': revenue,
-                            'labor_cost': laborTotal.toFixed(2)
-                        }
-                    });
-                }
-            } else if (hourlyRate > 0) {
-                resultElement.textContent = '--%';
-                statusMessage.textContent = 'Enter hours and revenue to calculate';
-                statusMessage.style.color = '#666';
-            }
-        }
-
-        // Format number inputs to show commas while typing
-        document.getElementById('laborHours').addEventListener('blur', function() {
-            if (this.value) {
-                this.value = parseFloat(this.value).toFixed(2);
-            }
-        });
-
-        document.getElementById('revenue').addEventListener('blur', function() {
-            if (this.value) {
-                this.value = parseFloat(this.value).toFixed(2);
-            }
-        });
-    </script>
-</body>
-</html> + parkSelect.value;
+                hourlyRate.textContent = '$' + parkSelect.value;
                 
                 // Track park selection
                 const parkName = parkSelect.options[parkSelect.selectedIndex].text;
@@ -593,27 +337,52 @@
                 // Remove all status classes first
                 resultBox.classList.remove('warning', 'good', 'caution');
                 
+                // Track calculation and determine performance tier
+                let performanceTier = '';
+                const parkName = parkSelect.options[parkSelect.selectedIndex].text;
+                
                 // Add appropriate status class and message based on percentage
                 if (percentage <= 15) {
                     resultBox.classList.add('good');
                     statusMessage.textContent = '✓ Excellent - Below 15%';
                     statusMessage.style.color = '#22c55e';
+                    performanceTier = 'Excellent';
                 } else if (percentage <= 18) {
                     resultBox.classList.add('good');
                     statusMessage.textContent = '✓ On Target - Meeting 18% goal';
                     statusMessage.style.color = '#22c55e';
+                    performanceTier = 'On Target';
                 } else if (percentage <= 22) {
                     resultBox.classList.add('caution');
                     statusMessage.textContent = '⚠️ Slightly Above Target';
                     statusMessage.style.color = '#f59e0b';
+                    performanceTier = 'Above Target';
                 } else if (percentage <= 28) {
                     resultBox.classList.add('warning');
                     statusMessage.textContent = '⚠️ High - Needs Attention';
                     statusMessage.style.color = '#ef4444';
+                    performanceTier = 'High';
                 } else {
                     resultBox.classList.add('warning');
                     statusMessage.textContent = '🚨 Critical - Significantly Over';
                     statusMessage.style.color = '#dc2626';
+                    performanceTier = 'Critical';
+                }
+                
+                // Track the calculation in Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'calculation_performed', {
+                        'event_category': 'calculator',
+                        'event_label': parkName,
+                        'custom_parameter': {
+                            'park': parkName,
+                            'percentage': percentage.toFixed(2),
+                            'performance_tier': performanceTier,
+                            'labor_hours': laborHours,
+                            'revenue': revenue,
+                            'labor_cost': laborTotal.toFixed(2)
+                        }
+                    });
                 }
             } else if (hourlyRate > 0) {
                 resultElement.textContent = '--%';
