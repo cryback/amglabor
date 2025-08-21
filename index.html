@@ -21,69 +21,6 @@
             padding: 20px;
         }
 
-        .login-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        .login-container h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .login-container p {
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
-
-        .login-container input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .login-container input:focus {
-            outline: none;
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
-        }
-
-        .login-container button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .login-container button:hover {
-            transform: translateY(-2px);
-        }
-
-        .error-message {
-            color: #ef4444;
-            margin-top: 10px;
-            font-size: 14px;
-            display: none;
-        }
-
         .container {
             background: white;
             border-radius: 20px;
@@ -92,7 +29,6 @@
             width: 100%;
             max-width: 500px;
             animation: slideIn 0.5s ease-out;
-            display: none;
         }
 
         @keyframes slideIn {
@@ -250,24 +186,6 @@
             font-weight: 600;
         }
 
-        .logout-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .logout-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -279,7 +197,7 @@
         }
 
         @media (max-width: 480px) {
-            .container, .login-container {
+            .container {
                 padding: 30px 20px;
             }
             
@@ -290,29 +208,11 @@
             .result-value {
                 font-size: 36px;
             }
-
-            .logout-btn {
-                top: 10px;
-                right: 10px;
-                font-size: 12px;
-                padding: 6px 12px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Login Screen -->
-    <div class="login-container" id="loginScreen">
-        <h2>AMG Labor Calculator</h2>
-        <p>Please enter password to continue</p>
-        <input type="password" id="passwordInput" placeholder="Enter password" onkeypress="if(event.key==='Enter') checkPassword()">
-        <button onclick="checkPassword()">Login</button>
-        <div class="error-message" id="errorMessage">Incorrect password. Please try again.</div>
-    </div>
-
-    <!-- Calculator (hidden initially) -->
-    <button class="logout-btn" id="logoutBtn" onclick="logout()" style="display:none;">Logout</button>
-    <div class="container" id="calculatorScreen">
+    <div class="container">
         <div style="text-align: center; margin-bottom: 25px;">
             <img src="logo.png" alt="AMG Logo" style="max-width: 200px; height: auto;">
         </div>
@@ -324,8 +224,12 @@
             <select id="park" onchange="updateHourlyRate()">
                 <option value="">-- Choose a Park --</option>
                 <option value="17.32">Appleton</option>
+                <option value="16.07">Austell</option>
                 <option value="16.99">Gastonia</option>
+                <option value="14.86">Huntsville</option>
+                <option value="13.55">Lawrenceville</option>
                 <option value="18.87">Lombard</option>
+                <option value="17.10">Nashville</option>
                 <option value="18.27">Pueblo</option>
                 <option value="21.34">San Jose</option>
                 <option value="18.22">York</option>
@@ -359,40 +263,6 @@
     </div>
 
     <script>
-        // Simple password protection
-        const PASSWORD = 'amg2025'; // CHANGE THIS TO YOUR DESIRED PASSWORD
-        
-        // Check if already logged in
-        if (sessionStorage.getItem('amgAuthenticated') === 'true') {
-            showCalculator();
-        }
-
-        function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
-            if (input === PASSWORD) {
-                sessionStorage.setItem('amgAuthenticated', 'true');
-                showCalculator();
-            } else {
-                document.getElementById('errorMessage').style.display = 'block';
-                document.getElementById('passwordInput').value = '';
-            }
-        }
-
-        function showCalculator() {
-            document.getElementById('loginScreen').style.display = 'none';
-            document.getElementById('calculatorScreen').style.display = 'block';
-            document.getElementById('logoutBtn').style.display = 'block';
-        }
-
-        function logout() {
-            sessionStorage.removeItem('amgAuthenticated');
-            document.getElementById('loginScreen').style.display = 'block';
-            document.getElementById('calculatorScreen').style.display = 'none';
-            document.getElementById('logoutBtn').style.display = 'none';
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('errorMessage').style.display = 'none';
-        }
-
         function updateHourlyRate() {
             const parkSelect = document.getElementById('park');
             const rateDisplay = document.getElementById('rateDisplay');
