@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Labor Percentage Calculator</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KRXEDPCMY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-4KRXEDPCMY');
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -374,9 +384,23 @@
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             if (input === PASSWORD) {
+                // Track successful login
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'login', {
+                        'event_category': 'authentication',
+                        'event_label': 'success'
+                    });
+                }
                 sessionStorage.setItem('amgAuthenticated', 'true');
                 showCalculator();
             } else {
+                // Track failed login
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'login', {
+                        'event_category': 'authentication',
+                        'event_label': 'failed'
+                    });
+                }
                 document.getElementById('errorMessage').style.display = 'block';
                 document.getElementById('passwordInput').value = '';
             }
@@ -389,6 +413,13 @@
         }
 
         function logout() {
+            // Track logout
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'logout', {
+                    'event_category': 'authentication'
+                });
+            }
+            
             sessionStorage.removeItem('amgAuthenticated');
             document.getElementById('loginScreen').style.display = 'block';
             document.getElementById('calculatorScreen').style.display = 'none';
@@ -404,7 +435,113 @@
             
             if (parkSelect.value) {
                 rateDisplay.style.display = 'block';
-                hourlyRate.textContent = '$' + parkSelect.value;
+                hourlyRate.textContent = '
+
+        function calculatePercentage() {
+            const laborHours = parseFloat(document.getElementById('laborHours').value) || 0;
+            const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+            const parkSelect = document.getElementById('park');
+            const hourlyRate = parseFloat(parkSelect.value) || 0;
+            const resultElement = document.getElementById('result');
+            const resultBox = document.getElementById('resultBox');
+            const statusMessage = document.getElementById('statusMessage');
+            const laborCostElement = document.getElementById('laborCost');
+            
+            if (hourlyRate === 0) {
+                resultElement.textContent = '--%';
+                laborCostElement.textContent = '$0.00';
+                resultBox.classList.remove('warning', 'good', 'caution');
+                statusMessage.textContent = 'Please select a park location';
+                statusMessage.style.color = '#666';
+                return;
+            }
+            
+            const laborTotal = laborHours * hourlyRate;
+            laborCostElement.textContent = '$' + laborTotal.toFixed(2);
+            
+            if (revenue > 0 && laborHours >= 0) {
+                const percentage = (laborTotal / revenue) * 100;
+                resultElement.textContent = percentage.toFixed(2) + '%';
+                
+                // Remove all status classes first
+                resultBox.classList.remove('warning', 'good', 'caution');
+                
+                // Determine status for tracking
+                let status = '';
+                
+                // Add appropriate status class and message based on percentage
+                if (percentage <= 15) {
+                    resultBox.classList.add('good');
+                    statusMessage.textContent = '✓ Excellent - Below 15%';
+                    statusMessage.style.color = '#22c55e';
+                    status = 'excellent';
+                } else if (percentage <= 18) {
+                    resultBox.classList.add('good');
+                    statusMessage.textContent = '✓ On Target - Meeting 18% goal';
+                    statusMessage.style.color = '#22c55e';
+                    status = 'on_target';
+                } else if (percentage <= 22) {
+                    resultBox.classList.add('caution');
+                    statusMessage.textContent = '⚠️ Slightly Above Target';
+                    statusMessage.style.color = '#f59e0b';
+                    status = 'slightly_above';
+                } else if (percentage <= 28) {
+                    resultBox.classList.add('warning');
+                    statusMessage.textContent = '⚠️ High - Needs Attention';
+                    statusMessage.style.color = '#ef4444';
+                    status = 'high';
+                } else {
+                    resultBox.classList.add('warning');
+                    statusMessage.textContent = '🚨 Critical - Significantly Over';
+                    statusMessage.style.color = '#dc2626';
+                    status = 'critical';
+                }
+                
+                // Track calculation
+                const parkSelect = document.getElementById('park');
+                const parkName = parkSelect.selectedIndex > 0 ? parkSelect.options[parkSelect.selectedIndex].text : 'Not Selected';
+                
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'calculation_performed', {
+                        'event_category': 'calculator',
+                        'event_label': parkName,
+                        'value': Math.round(percentage),
+                        'custom_parameter_1': status,
+                        'custom_parameter_2': percentage.toFixed(2)
+                    });
+                }
+            } else if (hourlyRate > 0) {
+                resultElement.textContent = '--%';
+                statusMessage.textContent = 'Enter hours and revenue to calculate';
+                statusMessage.style.color = '#666';
+            }
+        }
+
+        // Format number inputs to show commas while typing
+        document.getElementById('laborHours').addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toFixed(2);
+            }
+        });
+
+        document.getElementById('revenue').addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toFixed(2);
+            }
+        });
+    </script>
+</body>
+</html> + parkSelect.value;
+                
+                // Track park selection
+                const parkName = parkSelect.options[parkSelect.selectedIndex].text;
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'park_selected', {
+                        'event_category': 'calculator',
+                        'event_label': parkName,
+                        'value': parseFloat(parkSelect.value)
+                    });
+                }
             } else {
                 rateDisplay.style.display = 'none';
             }
