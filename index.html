@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labor Percentage Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+            color: white;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .info-box .rate-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .info-box .rate-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .result-box {
+            background: #f0f9ff;
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .result-box.warning {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+
+        .result-box.good {
+            background: #f0fdf4;
+            border-color: #22c55e;
+        }
+
+        .result-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .result-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .result-box.warning .result-value {
+            color: #ef4444;
+        }
+
+        .result-box.good .result-value {
+            color: #22c55e;
+        }
+
+        .status-message {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .result-value {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Labor % Calculator</h1>
+        <p class="subtitle">Calculate labor percentage by park location</p>
+        
+        <div class="form-group">
+            <label for="park">Select Park Location</label>
+            <select id="park" onchange="updateHourlyRate()">
+                <option value="">-- Choose a Park --</option>
+                <option value="17.32">Appleton</option>
+                <option value="16.99">Gastonia</option>
+                <option value="18.87">Lombard</option>
+                <option value="18.27">Pueblo</option>
+                <option value="21.34">San Jose</option>
+                <option value="18.22">York</option>
+            </select>
+        </div>
+
+        <div class="info-box" id="rateDisplay" style="display: none;">
+            <div class="rate-label">Hourly Rate</div>
+            <div class="rate-value" id="hourlyRate">$0.00</div>
+        </div>
+
+        <div class="form-group">
+            <label for="laborTotal">Labor Total ($)</label>
+            <input type="number" id="laborTotal" placeholder="Enter total labor cost" step="0.01" oninput="calculatePercentage()">
+        </div>
+
+        <div class="form-group">
+            <label for="revenue">Revenue ($)</label>
+            <input type="number" id="revenue" placeholder="Enter total revenue" step="0.01" oninput="calculatePercentage()">
+        </div>
+
+        <div class="result-box" id="resultBox">
+            <div class="result-label">Labor Percentage</div>
+            <div class="result-value" id="result">--%</div>
+            <div class="status-message" id="statusMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateHourlyRate() {
+            const parkSelect = document.getElementById('park');
+            const rateDisplay = document.getElementById('rateDisplay');
+            const hourlyRate = document.getElementById('hourlyRate');
+            
+            if (parkSelect.value) {
+                rateDisplay.style.display = 'block';
+                hourlyRate.textContent = '$' + parkSelect.value;
+            } else {
+                rateDisplay.style.display = 'none';
+            }
+            
+            calculatePercentage();
+        }
+
+        function calculatePercentage() {
+            const laborTotal = parseFloat(document.getElementById('laborTotal').value) || 0;
+            const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+            const resultElement = document.getElementById('result');
+            const resultBox = document.getElementById('resultBox');
+            const statusMessage = document.getElementById('statusMessage');
+            
+            if (revenue > 0 && laborTotal >= 0) {
+                const percentage = (laborTotal / revenue) * 100;
+                resultElement.textContent = percentage.toFixed(2) + '%';
+                
+                // Remove all status classes first
+                resultBox.classList.remove('warning', 'good');
+                
+                // Add appropriate status class and message based on percentage
+                if (percentage > 35) {
+                    resultBox.classList.add('warning');
+                    statusMessage.textContent = '⚠️ Above target range';
+                    statusMessage.style.color = '#ef4444';
+                } else if (percentage < 25) {
+                    resultBox.classList.add('good');
+                    statusMessage.textContent = '✓ Excellent labor efficiency';
+                    statusMessage.style.color = '#22c55e';
+                } else {
+                    statusMessage.textContent = '✓ Within target range';
+                    statusMessage.style.color = '#3b82f6';
+                }
+            } else {
+                resultElement.textContent = '--%';
+                resultBox.classList.remove('warning', 'good');
+                statusMessage.textContent = '';
+            }
+        }
+
+        // Format number inputs to show commas while typing
+        document.getElementById('laborTotal').addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toFixed(2);
+            }
+        });
+
+        document.getElementById('revenue').addEventListener('blur', function() {
+            if (this.value) {
+                this.value = parseFloat(this.value).toFixed(2);
+            }
+        });
+    </script>
+</body>
+</html>
