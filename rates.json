@@ -1,18 +1,18 @@
 {
   "parks": [
-    {"name": "Appleton", "rate": 17.32},
-    {"name": "Austell", "rate": 16.07},
-    {"name": "Gastonia", "rate": 16.99},
-    {"name": "Huntsville", "rate": 14.86},
-    {"name": "Lawrenceville", "rate": 13.55},
-    {"name": "Lombard", "rate": 18.87},
-    {"name": "Nashville", "rate": 17.10},
-    {"name": "Pueblo", "rate": 18.27},
-    {"name": "San Jose", "rate": 21.34},
-    {"name": "York", "rate": 18.22}
+    {"name": "Appleton", "rate": 17.22},
+    {"name": "Austell", "rate": 16.43},
+    {"name": "Gastonia", "rate": 17.42},
+    {"name": "Huntsville", "rate": 14.54},
+    {"name": "Lawrenceville", "rate": 13.48},
+    {"name": "Lombard", "rate": 19.68},
+    {"name": "Nashville", "rate": 17.42},
+    {"name": "Pueblo", "rate": 18.30},
+    {"name": "San Jose", "rate": 21.81},
+    {"name": "York", "rate": 18.17}
   ],
   "target_percentage": 18,
-  "last_updated": "2025-01-22",
+  "last_updated": "2025-08-29",
   "thresholds": {
     "excellent": 15,
     "on_target": 18,
