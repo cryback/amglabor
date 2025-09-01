@@ -1,0 +1,132 @@
+{
+  "Appleton": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "Austell": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "Gastonia": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "Huntsville": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "Lawrenceville": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "Lombard": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "Nashville": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "Pueblo": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "San Jose": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  },
+  "York": {
+    "weekOf": "2025-09-01",
+    "days": [
+      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Fri", "date": "09/05", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
+    ],
+    "totalPct": 0
+  }
+}

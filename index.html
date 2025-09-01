@@ -1,408 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labor Percentage Calculator</title>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4KRXEDPCMY"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-4KRXEDPCMY');
-    </script>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
-            width: 100%;
-            max-width: 500px;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        select, input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #fafafa;
-        }
-
-        select:focus, input:focus {
-            outline: none;
-            border-color: #667eea;
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
-        }
-
-        select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 12px center;
-            background-size: 20px;
-            padding-right: 40px;
-        }
-
-        .info-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 25px;
-            color: white;
-            text-align: center;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.02);
-            }
-        }
-
-        .info-box .rate-label {
-            font-size: 12px;
-            opacity: 0.9;
-            margin-bottom: 5px;
-        }
-
-        .info-box .rate-value {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .result-box {
-            background: #f0f9ff;
-            border: 2px solid #3b82f6;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .result-box.warning {
-            background: #fef2f2;
-            border-color: #ef4444;
-        }
-
-        .result-box.good {
-            background: #f0fdf4;
-            border-color: #22c55e;
-        }
-
-        .result-box.caution {
-            background: #fef3c7;
-            border-color: #f59e0b;
-        }
-
-        .result-label {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .result-value {
-            font-size: 48px;
-            font-weight: bold;
-            color: #3b82f6;
-            transition: all 0.3s ease;
-        }
-
-        .result-box.warning .result-value {
-            color: #ef4444;
-        }
-
-        .result-box.good .result-value {
-            color: #22c55e;
-        }
-
-        .result-box.caution .result-value {
-            color: #f59e0b;
-        }
-
-        .status-message {
-            margin-top: 10px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 24px;
-            }
-            
-            .result-value {
-                font-size: 36px;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Labor % Calculator</title>
+  <meta name="description" content="AMG Labor Percentage Calculator by park location" />
+  <link rel="icon" href="logo.png" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --card: #fafafa;
+      --border: #eaeaea;
+      --text: #111;
+      --muted: #666;
+      --accent: #0a7cff;
+      --good: #00a884;
+      --warn: #f59e0b;
+      --bad:  #ef4444;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px;
+      font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text); background: var(--bg);
+    }
+    header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
+    }
+    header img { width: 44px; height: 44px; border-radius: 10px; }
+    h1 { font-size: 1.4rem; margin: 0; }
+    .wrap {
+      max-width: 760px; margin: 0 auto;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .control label { display: block; font-weight: 600; margin-bottom: 6px; }
+    select, input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      background: #fff;
+    }
+    output, .stat {
+      display: block;
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 10px 12px;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .hint { color: var(--muted); font-size: .92rem; }
+    .pct { font-variant-numeric: tabular-nums; }
+    .money, .hours { font-variant-numeric: tabular-nums; }
+    .gauge {
+      height: 12px; border-radius: 999px; background: #eee; overflow: hidden; margin-top: 8px;
+    }
+    .gauge > span { display: block; height: 100%; background: var(--good); width: 0%; transition: width .2s ease; }
+    .gauge.bad > span { background: var(--bad); }
+    .gauge.warn > span { background: var(--warn); }
+    #daily-totals { margin-top: 2px; }
+    #daily-totals h2 { margin: 0 0 6px 0; font-size: 1.1rem; }
+    #daily-totals-note { color: var(--muted); font-size: .92rem; margin-bottom: 6px; }
+    #daily-totals-list {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      margin: 0;
+    }
+    footer { margin-top: 20px; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 720px) {
+      .row, .row-3 { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 25px;">
-            <img src="logo.png" alt="AMG Logo" style="max-width: 200px; height: auto;">
-        </div>
+  <div class="wrap">
+    <header>
+      <img src="logo.png" alt="AMG Logo" />
+      <div>
         <h1>Labor % Calculator</h1>
-        <p class="subtitle">Calculate labor percentage by park location</p>
-        
-        <div class="form-group">
-            <label for="park">Select Park Location</label>
-            <select id="park" onchange="updateHourlyRate()">
-                <option value="">-- Choose a Park --</option>
-                <option value="17.32">Appleton</option>
-                <option value="16.07">Austell</option>
-                <option value="16.99">Gastonia</option>
-                <option value="14.86">Huntsville</option>
-                <option value="13.55">Lawrenceville</option>
-                <option value="18.87">Lombard</option>
-                <option value="17.10">Nashville</option>
-                <option value="18.27">Pueblo</option>
-                <option value="21.34">San Jose</option>
-                <option value="18.22">York</option>
-            </select>
+        <div class="hint">Calculate labor percentage by park location</div>
+      </div>
+    </header>
+
+    <!-- Park selection -->
+    <section class="card" aria-labelledby="park-title">
+      <div class="row">
+        <div class="control">
+          <label id="park-title" for="parkSelect">Select Park Location</label>
+          <select id="parkSelect" aria-describedby="park-help">
+            <option value="">-- Choose a Park --</option>
+            <!-- options injected from rates.json -->
+          </select>
+          <div id="park-help" class="hint"></div>
         </div>
 
-        <div class="info-box" id="rateDisplay" style="display: none;">
-            <div class="rate-label">Hourly Rate</div>
-            <div class="rate-value" id="hourlyRate">$0.00</div>
+        <div class="control">
+          <label for="hourlyRateValue">Hourly Rate</label>
+          <output id="hourlyRateValue" class="money" aria-live="polite">$0.00</output>
+          <div class="hint">Pulled from <code>rates.json</code></div>
         </div>
+      </div>
+    </section>
 
-        <div class="form-group">
-            <label for="laborHours">Labor Hours Total</label>
-            <input type="number" id="laborHours" placeholder="Enter total labor hours" step="0.01" oninput="calculatePercentage()">
+    <!-- Inputs -->
+    <section class="card">
+      <div class="row">
+        <div class="control">
+          <label for="laborHours">Labor Hours Total</label>
+          <input id="laborHours" inputmode="decimal" type="number" min="0" step="0.01" placeholder="e.g., 125.5" />
         </div>
-
-        <div class="form-group">
-            <label for="revenue">Revenue ($)</label>
-            <input type="number" id="revenue" placeholder="Enter total revenue" step="0.01" oninput="calculatePercentage()">
+        <div class="control">
+          <label for="revenue">Revenue ($)</label>
+          <input id="revenue" inputmode="decimal" type="number" min="0" step="0.01" placeholder="e.g., 5200" />
         </div>
+      </div>
+    </section>
 
-        <div class="result-box" id="resultBox">
-            <div class="result-label">Labor Percentage</div>
-            <div class="result-value" id="result">--%</div>
-            <div class="status-message" id="statusMessage"></div>
-            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e0e0e0;">
-                <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Calculated Labor Cost</div>
-                <div style="font-size: 18px; font-weight: 600; color: #333;" id="laborCost">$0.00</div>
-            </div>
+    <!-- Outputs -->
+    <section class="card">
+      <div class="row">
+        <div class="control">
+          <label for="laborPctValue">Labor Percentage</label>
+          <output id="laborPctValue" class="pct">--%</output>
+          <div id="pctGauge" class="gauge" aria-hidden="true"><span style="width:0%"></span></div>
+          <div class="hint">Target ≤ 18%</div>
         </div>
-    </div>
+        <div class="control">
+          <label for="calcLaborCost">Calculated Labor Cost</label>
+          <output id="calcLaborCost" class="money">$0.00</output>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        // Track page view on load
-        window.addEventListener('load', function() {
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'page_view', {
-                    'page_title': 'Labor Calculator',
-                    'page_path': '/calculator'
-                });
-            }
-        });
+    <!-- Daily Totals (per-park) -->
+    <section id="daily-totals" class="card" aria-labelledby="daily-totals-title">
+      <h2 id="daily-totals-title">Daily Totals</h2>
+      <div id="daily-totals-note" class="hint"></div>
+      <pre id="daily-totals-list" aria-label="Daily totals (monospaced)"></pre>
+    </section>
 
-        function updateHourlyRate() {
-            const parkSelect = document.getElementById('park');
-            const rateDisplay = document.getElementById('rateDisplay');
-            const hourlyRate = document.getElementById('hourlyRate');
-            
-            if (parkSelect.value) {
-                rateDisplay.style.display = 'block';
-                hourlyRate.textContent = '$' + parkSelect.value;
-                
-                // Track park selection
-                const parkName = parkSelect.options[parkSelect.selectedIndex].text;
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'park_selected', {
-                        'event_category': 'calculator',
-                        'event_label': parkName,
-                        'value': parseFloat(parkSelect.value)
-                    });
-                }
-            } else {
-                rateDisplay.style.display = 'none';
-            }
-            
-            calculatePercentage();
+    <footer>
+      <span class="hint">This calculator reads <code>rates.json</code> and <code>daily_totals.json</code> from the repo root. Update those files in GitHub to change rates or daily totals.</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      // Elements
+      const parkSelect = document.getElementById('parkSelect');
+      const parkHelp   = document.getElementById('park-help');
+      const hourlyOut  = document.getElementById('hourlyRateValue');
+      const hoursIn    = document.getElementById('laborHours');
+      const revIn      = document.getElementById('revenue');
+      const pctOut     = document.getElementById('laborPctValue');
+      const costOut    = document.getElementById('calcLaborCost');
+      const gauge      = document.getElementById('pctGauge').firstElementChild;
+      const gaugeWrap  = document.getElementById('pctGauge');
+
+      const dailyNote  = document.getElementById('daily-totals-note');
+      const dailyList  = document.getElementById('daily-totals-list');
+
+      // State
+      let rates = {};              // { ParkName: number }
+      let dailyTotalsByPark = {};  // { ParkName: { weekOf, days[], totalPct } }
+
+      // Utils
+      const fmtMoney = (n) =>
+        new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(Number(n || 0));
+
+      const fmtPct = (n) => (n == null || isNaN(n)) ? '--%' : (Number(n).toFixed(2) + '%');
+
+      const toNumber = (el) => {
+        const v = Number((el.value || '').toString().replace(/,/g, ''));
+        return isFinite(v) ? v : 0;
+      };
+
+      function classifyGauge(percent) {
+        // ≤15 good, 15–22 warn, >22 bad (slightly broader than 18% target)
+        const wrap = gaugeWrap;
+        wrap.classList.remove('good','warn','bad');
+        if (!isFinite(percent)) return;
+        if (percent <= 18) wrap.classList.add('good');
+        else if (percent <= 22) wrap.classList.add('warn');
+        else wrap.classList.add('bad');
+      }
+
+      function updateCalc() {
+        const park = parkSelect.value || '';
+        const rate = Number(rates[park] || 0);
+        const hours = toNumber(hoursIn);
+        const rev = toNumber(revIn);
+
+        hourlyOut.textContent = fmtMoney(rate);
+
+        const cost = rate * hours;
+        costOut.textContent = fmtMoney(cost);
+
+        let pct = NaN;
+        if (rev > 0) pct = (cost / rev) * 100;
+
+        pctOut.textContent = isFinite(pct) ? fmtPct(pct) : '--%';
+
+        const w = isFinite(pct) ? Math.max(0, Math.min(100, pct)) : 0;
+        gauge.style.width = w + '%';
+        classifyGauge(pct);
+      }
+
+      function renderDailyTotalsFor(parkName) {
+        const EMPTY =
+          'Mon - --/-- - 0.00 - $0.00 - --%\n' +
+          'Tue - --/-- - 0.00 - $0.00 - --%\n' +
+          'Wed - --/-- - 0.00 - $0.00 - --%\n' +
+          'Thu - --/-- - 0.00 - $0.00 - --%\n' +
+          'Fri - --/-- - 0.00 - $0.00 - --%\n' +
+          'Sat - --/-- - 0.00 - $0.00 - --%\n' +
+          'Sun - --/-- - 0.00 - $0.00 - --%\n\n' +
+          'Total - 0.00 - $0.00 - --%';
+
+        if (!parkName) {
+          dailyList.textContent = EMPTY;
+          dailyNote.textContent = 'Select a park.';
+          return;
+        }
+        const pack = dailyTotalsByPark[parkName];
+        if (!pack || !Array.isArray(pack.days)) {
+          dailyList.textContent = EMPTY;
+          dailyNote.textContent = `No daily totals found for ${parkName}.`;
+          return;
+        }
+        const lines = pack.days.map(d =>
+          `${d.dow} - ${d.date} - ${Number(d.hours ?? 0).toFixed(2)} - ${fmtMoney(d.cost)} - ${fmtPct(d.pct)}`
+        );
+
+        const totalHours = pack.days.reduce((s, d) => s + Number(d.hours || 0), 0);
+        const totalCost  = pack.days.reduce((s, d) => s + Number(d.cost  || 0), 0);
+        lines.push('');
+        lines.push(`Total - ${totalHours.toFixed(2)} - ${fmtMoney(totalCost)} - ${fmtPct(pack.totalPct)}`);
+
+        dailyList.textContent = lines.join('\n');
+        dailyNote.textContent = `Week of ${pack.weekOf} — ${parkName}`;
+      }
+
+      function onParkChange() {
+        updateCalc();
+        renderDailyTotalsFor(parkSelect.value || '');
+      }
+
+      // Loaders
+      async function loadRates() {
+        const res = await fetch('rates.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error(`rates.json HTTP ${res.status}`);
+        const data = await res.json();
+
+        // Accept either object map {Park: rate} or array [{name, rate}]
+        if (Array.isArray(data)) {
+          data.forEach(row => {
+            if (row && row.name) rates[row.name] = Number(row.rate || row.value || 0);
+          });
+        } else {
+          rates = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, Number(v || 0)]));
         }
 
-        function calculatePercentage() {
-            const laborHours = parseFloat(document.getElementById('laborHours').value) || 0;
-            const revenue = parseFloat(document.getElementById('revenue').value) || 0;
-            const parkSelect = document.getElementById('park');
-            const hourlyRate = parseFloat(parkSelect.value) || 0;
-            const resultElement = document.getElementById('result');
-            const resultBox = document.getElementById('resultBox');
-            const statusMessage = document.getElementById('statusMessage');
-            const laborCostElement = document.getElementById('laborCost');
-            
-            if (hourlyRate === 0) {
-                resultElement.textContent = '--%';
-                laborCostElement.textContent = '$0.00';
-                resultBox.classList.remove('warning', 'good', 'caution');
-                statusMessage.textContent = 'Please select a park location';
-                statusMessage.style.color = '#666';
-                return;
-            }
-            
-            const laborTotal = laborHours * hourlyRate;
-            laborCostElement.textContent = '$' + laborTotal.toFixed(2);
-            
-            if (revenue > 0 && laborHours >= 0) {
-                const percentage = (laborTotal / revenue) * 100;
-                resultElement.textContent = percentage.toFixed(2) + '%';
-                
-                // Remove all status classes first
-                resultBox.classList.remove('warning', 'good', 'caution');
-                
-                // Track calculation and determine performance tier
-                let performanceTier = '';
-                const parkName = parkSelect.options[parkSelect.selectedIndex].text;
-                
-                // Add appropriate status class and message based on percentage
-                if (percentage <= 15) {
-                    resultBox.classList.add('good');
-                    statusMessage.textContent = '✓ Excellent - Below 15%';
-                    statusMessage.style.color = '#22c55e';
-                    performanceTier = 'Excellent';
-                } else if (percentage <= 18) {
-                    resultBox.classList.add('good');
-                    statusMessage.textContent = '✓ On Target - Meeting 18% goal';
-                    statusMessage.style.color = '#22c55e';
-                    performanceTier = 'On Target';
-                } else if (percentage <= 22) {
-                    resultBox.classList.add('caution');
-                    statusMessage.textContent = '⚠️ Slightly Above Target';
-                    statusMessage.style.color = '#f59e0b';
-                    performanceTier = 'Above Target';
-                } else if (percentage <= 28) {
-                    resultBox.classList.add('warning');
-                    statusMessage.textContent = '⚠️ High - Needs Attention';
-                    statusMessage.style.color = '#ef4444';
-                    performanceTier = 'High';
-                } else {
-                    resultBox.classList.add('warning');
-                    statusMessage.textContent = '🚨 Critical - Significantly Over';
-                    statusMessage.style.color = '#dc2626';
-                    performanceTier = 'Critical';
-                }
-                
-                // Track the calculation in Google Analytics
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'calculation_performed', {
-                        'event_category': 'calculator',
-                        'event_label': parkName,
-                        'custom_parameter': {
-                            'park': parkName,
-                            'percentage': percentage.toFixed(2),
-                            'performance_tier': performanceTier,
-                            'labor_hours': laborHours,
-                            'revenue': revenue,
-                            'labor_cost': laborTotal.toFixed(2)
-                        }
-                    });
-                }
-            } else if (hourlyRate > 0) {
-                resultElement.textContent = '--%';
-                statusMessage.textContent = 'Enter hours and revenue to calculate';
-                statusMessage.style.color = '#666';
-            }
+        // Build dropdown from rates keys
+        const parks = Object.keys(rates);
+        parks.sort((a,b) => a.localeCompare(b));
+        for (const name of parks) {
+          const opt = document.createElement('option');
+          opt.value = name; opt.textContent = name;
+          parkSelect.appendChild(opt);
         }
+        parkHelp.textContent = parks.length ? `${parks.length} parks loaded from rates.json` : 'No parks found in rates.json';
+      }
 
-        // Format number inputs to show commas while typing
-        document.getElementById('laborHours').addEventListener('blur', function() {
-            if (this.value) {
-                this.value = parseFloat(this.value).toFixed(2);
-            }
-        });
+      async function loadDailyTotals() {
+        try {
+          const res = await fetch('daily_totals.json', { cache: 'no-store' });
+          if (!res.ok) throw new Error(`daily_totals.json HTTP ${res.status}`);
+          dailyTotalsByPark = await res.json();
+        } catch (err) {
+          dailyTotalsByPark = {};
+          dailyNote.textContent = 'Daily totals unavailable (could not load daily_totals.json).';
+          dailyList.textContent =
+            'Mon - --/-- - 0.00 - $0.00 - --%\nTue - --/-- - 0.00 - $0.00 - --%\nWed - --/-- - 0.00 - $0.00 - --%\nThu - --/-- - 0.00 - $0.00 - --%\nFri - --/-- - 0.00 - $0.00 - --%\nSat - --/-- - 0.00 - $0.00 - --%\nSun - --/-- - 0.00 - $0.00 - --%\n\nTotal - 0.00 - $0.00 - --%';
+          console.warn(err);
+        }
+      }
 
-        document.getElementById('revenue').addEventListener('blur', function() {
-            if (this.value) {
-                this.value = parseFloat(this.value).toFixed(2);
-            }
-        });
-    </script>
+      // Wire events
+      parkSelect.addEventListener('change', onParkChange);
+      hoursIn.addEventListener('input', updateCalc);
+      revIn.addEventListener('input', updateCalc);
+
+      // Init
+      (async function init() {
+        try {
+          await loadRates();
+          await loadDailyTotals();
+        } catch (e) {
+          console.warn(e);
+        } finally {
+          // initial render
+          onParkChange();
+        }
+      })();
+    })();
+  </script>
 </body>
 </html>
