@@ -150,12 +150,29 @@
     </section>
 
     <footer>
-      <span class="hint">This calculator reads <code>rates.json</code> and <code>daily_totals.json</code> from the repo root. Update those files in GitHub to change rates or daily totals.</span>
+      <span class="hint">This calculator reads <code>rates.json</code> and <code>daily_totals.json</code> from GitHub Pages (absolute URLs), with a local fallback for development.</span>
     </footer>
   </div>
 
   <script>
     (function () {
+      // --- Absolute origin for hosted JSON (TestFlight-safe) ---
+      const ORIGIN = 'https://cryback.github.io/amglabor';
+
+      // Helper: try absolute URL first (GitHub Pages), then fall back to relative for local/dev use.
+      async function fetchJSON(name) {
+        try {
+          const abs = await fetch(`${ORIGIN}/${name}`, { cache: 'no-store' });
+          if (!abs.ok) throw new Error(`${name} HTTP ${abs.status}`);
+          return await abs.json();
+        } catch (e) {
+          // Fallback if offline or running from local file:// or a dev server with local copies
+          const rel = await fetch(name, { cache: 'no-store' });
+          if (!rel.ok) throw new Error(`${name} (relative) HTTP ${rel.status}`);
+          return await rel.json();
+        }
+      }
+
       // Elements
       const parkSelect = document.getElementById('parkSelect');
       const parkHelp   = document.getElementById('park-help');
@@ -258,9 +275,7 @@
 
       // Loaders
       async function loadRates() {
-        const res = await fetch('rates.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error(`rates.json HTTP ${res.status}`);
-        const data = await res.json();
+        const data = await fetchJSON('rates.json');
 
         // Accept either object map {Park: rate} or array [{name, rate}]
         if (Array.isArray(data)) {
@@ -285,13 +300,14 @@
         if (!parkSelect.value && parks.length) {
           parkSelect.value = parks[0];
         }
+
+        // Diagnostics
+        console.log('rates.json loaded parks:', parks);
       }
 
       async function loadDailyTotals() {
         try {
-          const res = await fetch('daily_totals.json', { cache: 'no-store' });
-          if (!res.ok) throw new Error(`daily_totals.json HTTP ${res.status}`);
-          dailyTotalsByPark = await res.json();
+          dailyTotalsByPark = await fetchJSON('daily_totals.json');
 
           // Diagnostics: show which parks were found in daily_totals.json
           console.log('daily_totals.json loaded parks:', Object.keys(dailyTotalsByPark));
