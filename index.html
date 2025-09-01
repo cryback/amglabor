@@ -30,9 +30,7 @@
     }
     header img { width: 44px; height: 44px; border-radius: 10px; }
     h1 { font-size: 1.4rem; margin: 0; }
-    .wrap {
-      max-width: 760px; margin: 0 auto;
-    }
+    .wrap { max-width: 760px; margin: 0 auto; }
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -188,7 +186,7 @@
       };
 
       function classifyGauge(percent) {
-        // ≤15 good, 15–22 warn, >22 bad (slightly broader than 18% target)
+        // ≤18 good, 18–22 warn, >22 bad
         const wrap = gaugeWrap;
         wrap.classList.remove('good','warn','bad');
         if (!isFinite(percent)) return;
@@ -282,6 +280,11 @@
           parkSelect.appendChild(opt);
         }
         parkHelp.textContent = parks.length ? `${parks.length} parks loaded from rates.json` : 'No parks found in rates.json';
+
+        // Auto-select first park so Daily Totals render immediately
+        if (!parkSelect.value && parks.length) {
+          parkSelect.value = parks[0];
+        }
       }
 
       async function loadDailyTotals() {
@@ -289,6 +292,9 @@
           const res = await fetch('daily_totals.json', { cache: 'no-store' });
           if (!res.ok) throw new Error(`daily_totals.json HTTP ${res.status}`);
           dailyTotalsByPark = await res.json();
+
+          // Diagnostics: show which parks were found in daily_totals.json
+          console.log('daily_totals.json loaded parks:', Object.keys(dailyTotalsByPark));
         } catch (err) {
           dailyTotalsByPark = {};
           dailyNote.textContent = 'Daily totals unavailable (could not load daily_totals.json).';
@@ -311,7 +317,7 @@
         } catch (e) {
           console.warn(e);
         } finally {
-          // initial render
+          // Initial render (will use the auto-selected first park, if any)
           onParkChange();
         }
       })();
