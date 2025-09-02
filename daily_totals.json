@@ -3,7 +3,7 @@
   "parks": {
     "Appleton": {
       "days": [
-        { "dow": "Mon", "hours": "40.43", "cost": "5,454.16", "pct": "12.84%" },
+        { "dow": "Mon", "hours": "40.43", "cost": "5,475.14", "pct": "12.72%" },
         { "dow": "Tue", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
@@ -36,7 +36,7 @@
     },
     "Huntsville": {
       "days": [
-        { "dow": "Mon", "hours": "49.09", "cost": "5,714.12", "pct": "12.49%" },
+        { "dow": "Mon", "hours": "49.13", "cost": "5,714.12", "pct": "12.50%" },
         { "dow": "Tue", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
@@ -69,7 +69,7 @@
     },
     "Nashville": {
       "days": [
-        { "dow": "Mon", "hours": "79.50", "cost": "10,710.98", "pct": "12.93%" },
+        { "dow": "Mon", "hours": "79.50", "cost": "10,799.46", "pct": "12.82%" },
         { "dow": "Tue", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
@@ -102,7 +102,7 @@
     },
     "York": {
       "days": [
-        { "dow": "Mon", "hours": "37.23", "cost": "1,965.48", "pct": "34.42%" },
+        { "dow": "Mon", "hours": "21.60", "cost": "1,965.48", "pct": "19.97%" },
         { "dow": "Tue", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
