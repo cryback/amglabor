@@ -2,7 +2,7 @@
   "Appleton": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "40.43", "cost": "5,454.16", "pct": "12.84%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -10,12 +10,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "12.84%"
   },
   "Austell": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "59.23", "cost": "6,661.88", "pct": "14.61%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -23,12 +23,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "14.61%"
   },
   "Gastonia": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "44.57", "cost": "5,438.70", "pct": "14.28%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -36,12 +36,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "14.28%"
   },
   "Huntsville": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "49.09", "cost": "5,714.12", "pct": "12.49%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -49,12 +49,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "12.49%"
   },
   "Lawrenceville": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "90.68", "cost": "12,540.17", "pct": "9.75%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -62,12 +62,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "9.75%"
   },
   "Lombard": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "45.84", "cost": "3,501.36", "pct": "25.77%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -75,12 +75,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "25.77%"
   },
   "Nashville": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "79.50", "cost": "10,710.98", "pct": "12.93%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -88,12 +88,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "12.93%"
   },
   "Pueblo": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "35.39", "cost": "4,736.22", "pct": "13.67%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -101,12 +101,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "13.67%"
   },
   "San Jose": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "69.08", "cost": "14,762.53", "pct": "10.21%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -114,12 +114,12 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "10.21%"
   },
   "York": {
     "weekOf": "2025-09-01",
     "days": [
-      { "dow": "Mon", "date": "09/01", "hours": 0, "cost": 0, "pct": 0 },
+      { "dow": "Mon", "date": "09/01", "hours": "37.23", "cost": "1,965.48", "pct": "34.42%" },
       { "dow": "Tue", "date": "09/02", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Wed", "date": "09/03", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Thu", "date": "09/04", "hours": 0, "cost": 0, "pct": 0 },
@@ -127,6 +127,6 @@
       { "dow": "Sat", "date": "09/06", "hours": 0, "cost": 0, "pct": 0 },
       { "dow": "Sun", "date": "09/07", "hours": 0, "cost": 0, "pct": 0 }
     ],
-    "totalPct": 0
+    "totalPct": "34.42%"
   }
 }
