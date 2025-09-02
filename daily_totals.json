@@ -81,9 +81,9 @@
     "Pueblo": {
       "days": [
         { "dow": "Mon", "hours": "35.39", "cost": "4,736.22", "pct": "13.67%" },
-        { "dow": "Tue", "hours": "35.39", "cost": "4,736.22", "pct": "13.67%" },
-        { "dow": "Wed", "hours": "35.39", "cost": "4,736.22", "pct": "13.67%" },
-        { "dow": "Thu", "hours": "35.39", "cost": "4,736.22", "pct": "13.67%" },
+        { "dow": "Tue", "hours": 0, "cost": 0, "pct": 0 },
+        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
+        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
