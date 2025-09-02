@@ -102,7 +102,7 @@
     },
     "York": {
       "days": [
-        { "dow": "Mon", "hours": "21.60", "cost": "1,965.48", "pct": "19.97%" },
+        { "dow": "Mon", "hours": "33.10", "cost": "1,965.48", "pct": "30.60%" },
         { "dow": "Tue", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
