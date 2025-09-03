@@ -26,7 +26,7 @@
     "Gastonia": {
       "days": [
         { "dow": "Mon", "hours": "44.57", "cost": "5,438.70", "pct": "14.28%" },
-        { "dow": "Tue", "hours": "35.52", "cost": "2,515.37" "pct": "24.60%" },
+        { "dow": "Tue", "hours": "35.52", "cost": "2,515.37", "pct": "24.60%" },
         { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
         { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
