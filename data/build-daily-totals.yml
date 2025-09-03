@@ -1,0 +1,35 @@
+name: Build daily_totals.json from CSV
+
+on:
+  push:
+    paths:
+      - 'data/daily_totals.csv'
+      - 'rates.json'
+      - 'build_daily_totals.py'
+      - '.github/workflows/build-daily-totals.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build JSON from CSV (auto-compute cost & pct)
+        run: |
+          python3 build_daily_totals.py --input data/daily_totals.csv --output daily_totals.json --rates rates.json
+
+      - name: Commit JSON if changed
+        run: |
+          if ! git diff --quiet -- daily_totals.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add daily_totals.json
+            git commit -m "chore: build daily_totals.json from CSV"
+            git push
+          else
+            echo "No changes to daily_totals.json"
+          fi
