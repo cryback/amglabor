@@ -1,114 +1,464 @@
 {
-  "weekOf": "09-01-2025",
+  "weekOf": "9/1/25",
   "parks": {
     "Appleton": {
       "days": [
-        { "dow": "Mon", "hours": "40.43", "cost": "5,475.14", "pct": "12.72%" },
-        { "dow": "Tue", "hours": "25.79", "cost": "2,958.94", "pct": "15.01%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 40.43,
+          "cost": 5475.14,
+          "pct": 12.72
+        },
+        {
+          "dow": "Tue",
+          "hours": 25.79,
+          "cost": 2958.94,
+          "pct": 15.01
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 25.79,
+          "cost": 2958.94,
+          "pct": 15.01
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "Austell": {
       "days": [
-        { "dow": "Mon", "hours": "59.23", "cost": "6,661.88", "pct": "14.61%" },
-        { "dow": "Tue", "hours": "44.10", "cost": "1,756.73", "pct": "41.24%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 59.23,
+          "cost": 6661.88,
+          "pct": 14.61
+        },
+        {
+          "dow": "Tue",
+          "hours": 27.83,
+          "cost": 1756.73,
+          "pct": 41.24
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "Gastonia": {
       "days": [
-        { "dow": "Mon", "hours": "44.57", "cost": "5,438.70", "pct": "14.28%" },
-        { "dow": "Tue", "hours": "35.52", "cost": "2,515.37", "pct": "24.60%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 44.57,
+          "cost": 5438.7,
+          "pct": 14.28
+        },
+        {
+          "dow": "Tue",
+          "hours": 45.67,
+          "cost": 2515.37,
+          "pct": 24.6
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "Huntsville": {
       "days": [
-        { "dow": "Mon", "hours": "49.13", "cost": "5,714.12", "pct": "12.50%" },
-        { "dow": "Tue", "hours": "38.11", "cost": "860.89", "pct": "64.37%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 49.13,
+          "cost": 5714.12,
+          "pct": 12.5
+        },
+        {
+          "dow": "Tue",
+          "hours": 38.11,
+          "cost": 860.89,
+          "pct": 64.37
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "Lawrenceville": {
       "days": [
-        { "dow": "Mon", "hours": "90.68", "cost": "12,540.17", "pct": "9.75%" },
-        { "dow": "Tue", "hours": "49.91", "cost": "3,077.72", "pct": "21.86%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 90.68,
+          "cost": 12540.17,
+          "pct": 9.75
+        },
+        {
+          "dow": "Tue",
+          "hours": 49.91,
+          "cost": 3077.72,
+          "pct": 21.86
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "Lombard": {
       "days": [
-        { "dow": "Mon", "hours": "45.84", "cost": "3,501.36", "pct": "25.77%" },
-        { "dow": "Tue", "hours": "31.11", "cost": "2,199.79", "pct": "27.83%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 45.84,
+          "cost": 3501.36,
+          "pct": 25.77
+        },
+        {
+          "dow": "Tue",
+          "hours": 31.11,
+          "cost": 2199.79,
+          "pct": 27.83
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "Nashville": {
       "days": [
-        { "dow": "Mon", "hours": "79.50", "cost": "10,799.46", "pct": "12.82%" },
-        { "dow": "Tue", "hours": "24.39", "cost": "2,816.54", "pct": "15.08%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 79.5,
+          "cost": 10799.46,
+          "pct": 12.82
+        },
+        {
+          "dow": "Tue",
+          "hours": 24.39,
+          "cost": 2816.54,
+          "pct": 15.08
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "Pueblo": {
       "days": [
-        { "dow": "Mon", "hours": "35.39", "cost": "4,736.22", "pct": "13.67%" },
-        { "dow": "Tue", "hours": "32.66", "cost": "2,732.58", "pct": "21.87%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 35.39,
+          "cost": 4736.22,
+          "pct": 13.67
+        },
+        {
+          "dow": "Tue",
+          "hours": 32.66,
+          "cost": 2739.58,
+          "pct": 21.87
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "San Jose": {
       "days": [
-        { "dow": "Mon", "hours": "69.08", "cost": "14,762.53", "pct": "10.21%" },
-        { "dow": "Tue", "hours": "46.03", "cost": "3,901.06", "pct": "25.73%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 69.08,
+          "cost": 14762.53,
+          "pct": 10.21
+        },
+        {
+          "dow": "Tue",
+          "hours": 46.03,
+          "cost": 3911.06,
+          "pct": 25.73
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     },
     "York": {
       "days": [
-        { "dow": "Mon", "hours": "33.10", "cost": "1,965.48", "pct": "30.60%" },
-        { "dow": "Tue", "hours": "27.78", "cost": "1,278.53", "pct": "39.48%" },
-        { "dow": "Wed", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Thu", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Fri", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sat", "hours": 0, "cost": 0, "pct": 0 },
-        { "dow": "Sun", "hours": 0, "cost": 0, "pct": 0 }
+        {
+          "dow": "Mon",
+          "hours": 33.1,
+          "cost": 1965.48,
+          "pct": 30.6
+        },
+        {
+          "dow": "Tue",
+          "hours": 27.78,
+          "cost": 1278.53,
+          "pct": 39.48
+        },
+        {
+          "dow": "Wed",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Thu",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Fri",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sat",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        },
+        {
+          "dow": "Sun",
+          "hours": 0.0,
+          "cost": 0.0,
+          "pct": 0.0
+        }
       ]
     }
   }
