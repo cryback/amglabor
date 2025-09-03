@@ -1,21 +1,22 @@
-weekOf,park,dow,hours,cost,pct
-9/1/25,Appleton,Mon,40.43,5475.14,12.72%
-9/1/25,Appleton,Tue,25.79,2958.94,15.01%
-9/1/25,Austell,Mon,59.23,6661.88,14.61%
-9/1/25,Austell,Tue,27.83,1756.73,41.24%
-9/1/25,Gastonia,Mon,44.57,5438.7,14.28%
-9/1/25,Gastonia,Tue,45.67,2515.37,24.60%
-9/1/25,Huntsville,Mon,49.13,5714.12,12.50%
-9/1/25,Huntsville,Tue,38.11,860.89,64.37%
-9/1/25,Lawrenceville,Mon,90.68,12540.17,9.75%
-9/1/25,Lawrenceville,Tue,49.91,3077.72,21.86%
-9/1/25,Lombard,Mon,45.84,3501.36,25.77%
-9/1/25,Lombard,Tue,31.11,2199.79,27.83%
-9/1/25,Nashville,Mon,79.5,10799.46,12.82%
-9/1/25,Nashville,Tue,24.39,2816.54,15.08%
-9/1/25,Pueblo,Mon,35.39,4736.22,13.67%
-9/1/25,Pueblo,Tue,32.66,"2,739.58",21.87%
-9/1/25,San Jose,Mon,69.08,14762.53,10.21%
-9/1/25,San Jose,Tue,46.03,"3,911.06",25.73%
-9/1/25,York,Mon,33.1,1965.48,30.60%
-9/1/25,York,Tue,27.78,1278.53,39.48%
+weekOf,park,dow,hours,cost,revenue,pct
+9/1/25,Appleton,Mon,40.43,,5475.14,
+9/1/25,Appleton,Tue,25.79,,2958.94,
+9/1/25,Appleton,Sun,10,,1000,
+9/1/25,Austell,Mon,59.23,,6661.88,
+9/1/25,Austell,Tue,27.83,,1756.73,
+9/1/25,Gastonia,Mon,44.57,,5438.7,
+9/1/25,Gastonia,Tue,45.67,,2515.37,
+9/1/25,Huntsville,Mon,49.13,,5714.12,
+9/1/25,Huntsville,Tue,38.11,,860.89,
+9/1/25,Lawrenceville,Mon,90.68,,12540.17,
+9/1/25,Lawrenceville,Tue,49.91,,3077.72,
+9/1/25,Lombard,Mon,45.84,,3501.36,
+9/1/25,Lombard,Tue,31.11,,2199.79,
+9/1/25,Nashville,Mon,79.5,,10799.46,
+9/1/25,Nashville,Tue,24.39,,2816.54,
+9/1/25,Pueblo,Mon,35.39,,4736.22,
+9/1/25,Pueblo,Tue,32.66,,"2,739.58",
+9/1/25,San Jose,Mon,69.08,,14762.53,
+9/1/25,San Jose,Tue,46.03,,"3,911.06",
+9/1/25,York,Mon,33.1,,1965.48,
+9/1/25,York,Tue,27.78,,1278.53,
