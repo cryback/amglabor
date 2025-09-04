@@ -185,31 +185,31 @@
         },
         {
           "dow": "Thu",
-          "hours": 26.83,
-          "cost": 390.11,
-          "revenue": 1157.22,
-          "pct": 33.71
+          "hours": 0.0,
+          "cost": 0.0,
+          "revenue": 0.0,
+          "pct": 0.0
         },
         {
           "dow": "Fri",
-          "hours": 26.83,
-          "cost": 390.11,
-          "revenue": 1157.22,
-          "pct": 33.71
+          "hours": 0.0,
+          "cost": 0.0,
+          "revenue": 0.0,
+          "pct": 0.0
         },
         {
           "dow": "Sat",
-          "hours": 26.83,
-          "cost": 390.11,
-          "revenue": 1157.22,
-          "pct": 33.71
+          "hours": 0.0,
+          "cost": 0.0,
+          "revenue": 0.0,
+          "pct": 0.0
         },
         {
           "dow": "Sun",
-          "hours": 26.83,
-          "cost": 390.11,
-          "revenue": 1157.22,
-          "pct": 33.71
+          "hours": 0.0,
+          "cost": 0.0,
+          "revenue": 0.0,
+          "pct": 0.0
         }
       ]
     },
