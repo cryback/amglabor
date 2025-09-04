@@ -15,8 +15,8 @@ Auto-compute rules:
   pct accepts 12.5, "12.5%" or 0.125 (Excel percent)
   hours/cost/revenue accept $ and commas in input; we sanitize.
 
-JSON output (Option 1 shape expected by your iOS app):
-  { "weekOf": "...", "parks": { "<Park>": { "days": [ {dow,hours,cost,pct}, ... ] } } }
+JSON output (what your iOS app reads):
+  { "weekOf": "...", "parks": { "<Park>": { "days": [ {dow,hours,cost,revenue,pct}, ... ] } } }
 """
 
 import argparse, csv, json, os, sys
@@ -161,6 +161,7 @@ def main():
             "dow": dow,
             "hours": hours,
             "cost": cost,
+            "revenue": revenue,     # <—— include revenue in JSON
             "pct": pct
         }
 
@@ -173,7 +174,7 @@ def main():
             if d in by_dow:
                 day_list.append(by_dow[d])
             else:
-                day_list.append({"dow": d, "hours": 0.0, "cost": 0.0, "pct": 0.0})
+                day_list.append({"dow": d, "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0})
         out_parks[park_name] = {"days": day_list}
 
     result = {"weekOf": week_of, "parks": out_parks}
@@ -186,4 +187,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
