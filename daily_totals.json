@@ -12,24 +12,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 20.88,
+          "cost": 357.67,
+          "revenue": 2169.47,
+          "pct": 16.49
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 20.24,
+          "cost": 346.71,
+          "revenue": 2421.93,
+          "pct": 14.32
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 19.88,
+          "cost": 340.54,
+          "revenue": 2814.74,
+          "pct": 12.1
         },
         {
           "dow": "Fri",
@@ -65,24 +65,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 34.63,
+          "cost": 580.4,
+          "revenue": 1581.89,
+          "pct": 36.69
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 32.93,
+          "cost": 551.91,
+          "revenue": 1647.74,
+          "pct": 33.49
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 25.32,
+          "cost": 424.36,
+          "revenue": 964.86,
+          "pct": 43.98
         },
         {
           "dow": "Fri",
@@ -118,24 +118,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 37.08,
+          "cost": 658.91,
+          "revenue": 2172.56,
+          "pct": 30.33
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 27.66,
+          "cost": 491.52,
+          "revenue": 2261.9,
+          "pct": 21.73
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 26.75,
+          "cost": 475.35,
+          "revenue": 2267.76,
+          "pct": 20.96
         },
         {
           "dow": "Fri",
@@ -171,24 +171,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 31.99,
+          "cost": 472.17,
+          "revenue": 1694.33,
+          "pct": 27.87
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 32.51,
+          "cost": 479.85,
+          "revenue": 1743.06,
+          "pct": 27.53
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 25.76,
+          "cost": 380.22,
+          "revenue": 944.0,
+          "pct": 40.28
         },
         {
           "dow": "Fri",
@@ -224,24 +224,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 47.42,
+          "cost": 653.92,
+          "revenue": 3202.51,
+          "pct": 20.42
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 39.65,
+          "cost": 546.77,
+          "revenue": 3510.09,
+          "pct": 15.58
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 31.87,
+          "cost": 439.49,
+          "revenue": 2707.54,
+          "pct": 16.23
         },
         {
           "dow": "Fri",
@@ -277,24 +277,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 30.73,
+          "cost": 600.46,
+          "revenue": 1602.61,
+          "pct": 37.47
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 33.62,
+          "cost": 656.93,
+          "revenue": 1826.26,
+          "pct": 35.97
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 31.79,
+          "cost": 621.18,
+          "revenue": 1387.66,
+          "pct": 44.76
         },
         {
           "dow": "Fri",
@@ -330,24 +330,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 31.21,
+          "cost": 543.68,
+          "revenue": 3172.77,
+          "pct": 17.14
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 36.39,
+          "cost": 633.91,
+          "revenue": 2777.08,
+          "pct": 22.83
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 41.75,
+          "cost": 727.29,
+          "revenue": 3251.17,
+          "pct": 22.37
         },
         {
           "dow": "Fri",
@@ -383,24 +383,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 33.86,
+          "cost": 621.33,
+          "revenue": 1943.66,
+          "pct": 31.97
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 33.98,
+          "cost": 623.53,
+          "revenue": 2389.63,
+          "pct": 26.09
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 33.61,
+          "cost": 616.74,
+          "revenue": 5364.94,
+          "pct": 11.5
         },
         {
           "dow": "Fri",
@@ -436,24 +436,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 46.31,
+          "cost": 1014.65,
+          "revenue": 2447.92,
+          "pct": 41.45
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 40.18,
+          "cost": 880.34,
+          "revenue": 2991.64,
+          "pct": 29.43
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 37.72,
+          "cost": 826.45,
+          "revenue": 3194.97,
+          "pct": 25.87
         },
         {
           "dow": "Fri",
@@ -489,24 +489,24 @@
         },
         {
           "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 26.17,
+          "cost": 486.24,
+          "revenue": 1469.52,
+          "pct": 33.09
         },
         {
           "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 28.55,
+          "cost": 530.46,
+          "revenue": 1496.2,
+          "pct": 35.45
         },
         {
           "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
+          "hours": 28.73,
+          "cost": 533.8,
+          "revenue": 1426.57,
+          "pct": 37.42
         },
         {
           "dow": "Fri",
