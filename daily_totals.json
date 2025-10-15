@@ -323,17 +323,17 @@
       "days": [
         {
           "dow": "Mon",
-          "hours": 42.55,
-          "cost": 758.24,
+          "hours": 50.52,
+          "cost": 900.27,
           "revenue": 5652.74,
-          "pct": 13.41
+          "pct": 15.93
         },
         {
           "dow": "Tue",
-          "hours": 56.2,
-          "cost": 1001.48,
+          "hours": 55.7,
+          "cost": 992.57,
           "revenue": 12084.27,
-          "pct": 8.29
+          "pct": 8.21
         },
         {
           "dow": "Wed",
