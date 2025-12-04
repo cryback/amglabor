@@ -389,282 +389,356 @@
     </section>
   </main>
 
-  <script>
-    // --------- CONFIG + FALLBACKS ---------
+<script>
+  // ---------- CONFIG & FALLBACKS ----------
+  const DEFAULT_RATES = {
+    "Appleton": 17.32,
+    "Austell": 16.07,
+    "Gastonia": 16.99,
+    "Huntsville": 14.86,
+    "Lawrenceville": 13.55,
+    "Lombard": 18.87,
+    "Nashville": 17.10,
+    "Pueblo": 18.27,
+    "San Jose": 21.34,
+    "York": 18.22
+  };
 
-    const FALLBACK_RATES = {
-      "Appleton": 17.32,
-      "Austell": 16.07,
-      "Gastonia": 16.99,
-      "Huntsville": 14.86,
-      "Lawrenceville": 13.55,
-      "Lombard": 18.87,
-      "Nashville": 17.10,
-      "Pueblo": 18.27,
-      "San Jose": 21.34,
-      "York": 18.22
-    };
+  let hourlyRates = {};
+  let targetPercent = 18;
+  let dailyTotals = null;
+  let manualDailyParkSelection = false;
 
-    const DEFAULT_TARGET_PERCENTAGE = 18;
-
-    let hourlyRates = { ...FALLBACK_RATES };
-    let targetPercentage = DEFAULT_TARGET_PERCENTAGE;
-    let dailyTotals = null;
-    let selectedPark = "";
-
-    // --------- INIT ---------
-
-    document.addEventListener("DOMContentLoaded", () => {
-      wireInputs();
-      initApp();
+  // ---------- HELPERS ----------
+  function formatCurrency(value) {
+    const num = Number(value);
+    if (!isFinite(num)) return "$0.00";
+    return num.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
     });
+  }
 
-    function wireInputs() {
-      const hours = document.getElementById("laborHours");
-      const revenue = document.getElementById("revenue");
+  function formatPercent(value) {
+    const num = Number(value);
+    if (!isFinite(num)) return "--%";
+    return num.toFixed(2) + "%";
+  }
 
-      hours.addEventListener("input", updateCalculations);
-      revenue.addEventListener("input", updateCalculations);
+  function setStatus(percent) {
+    const statusEl = document.getElementById("statusText");
+    const card = document.getElementById("resultsCard");
+
+    if (!isFinite(percent)) {
+      statusEl.textContent = "Waiting for inputs…";
+      card.className = "results-card neutral";
+      return;
     }
 
-    async function initApp() {
-      await loadRates();
-      await loadDailyTotals();
+    let msg = "";
+    let cls = "";
+
+    if (percent <= 15) {
+      msg = "Excellent – Below 15%";
+      cls = "results-card excellent";
+    } else if (percent <= targetPercent) {
+      msg = "On Target – Meeting goal";
+      cls = "results-card on-target";
+    } else if (percent <= 22) {
+      msg = "Slightly Above Target";
+      cls = "results-card slightly-high";
+    } else if (percent <= 28) {
+      msg = "High – Needs Attention";
+      cls = "results-card high";
+    } else {
+      msg = "Critical – Significantly Over";
+      cls = "results-card critical";
+    }
+
+    statusEl.textContent = msg;
+    card.className = cls;
+  }
+
+  // ---------- RATES / PARK SELECT ----------
+  async function loadRates() {
+    try {
+      const response = await fetch("rates.json", { cache: "no-cache" });
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      const data = await response.json();
+      parseRatesData(data);
+    } catch (err) {
+      console.warn("Using fallback hourly rates:", err);
+      hourlyRates = { ...DEFAULT_RATES };
+      targetPercent = 18;
+    } finally {
       populateParkSelect();
       updateTargetDisplay();
-      updateCalculations();
-      updateDailyTotalsSection();
+      recalcLabor();
+    }
+  }
+
+  function parseRatesData(data) {
+    // Get target percentage if present
+    if (typeof data.target_percentage === "number") {
+      targetPercent = data.target_percentage;
     }
 
-    // --------- DATA LOADING ---------
+    const parks = {};
 
-    async function loadRates() {
-      try {
-        const res = await fetch("rates.json", { cache: "no-store" });
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        const data = await res.json();
-        const parsed = parseRatesData(data);
-        hourlyRates = parsed.hourlyRates;
-        targetPercentage = parsed.targetPercentage;
-        console.log("Loaded rates from rates.json", parsed);
-      } catch (err) {
-        console.warn("Using fallback rates because rates.json could not be read:", err);
-        hourlyRates = { ...FALLBACK_RATES };
-        targetPercentage = DEFAULT_TARGET_PERCENTAGE;
+    // If there is a "parks" object, support that
+    if (data.parks && typeof data.parks === "object") {
+      for (const [name, info] of Object.entries(data.parks)) {
+        if (typeof info === "number") {
+          parks[name] = info;
+        } else if (info && typeof info.hourly_rate === "number") {
+          parks[name] = info.hourly_rate;
+        }
       }
-    }
-
-    function parseRatesData(data) {
-      const result = {
-        hourlyRates: {},
-        targetPercentage: DEFAULT_TARGET_PERCENTAGE
-      };
-
-      if (!data || typeof data !== "object") {
-        return { hourlyRates: { ...FALLBACK_RATES }, targetPercentage: DEFAULT_TARGET_PERCENTAGE };
-      }
-
-      // Target percentage (several possible property names)
-      if (typeof data.target_percentage === "number") {
-        result.targetPercentage = data.target_percentage;
-      } else if (typeof data.targetPercent === "number") {
-        result.targetPercentage = data.targetPercent;
-      } else if (typeof data.target === "number") {
-        result.targetPercentage = data.target;
-      }
-
-      // Where are the parks?
-      // Prefer a nested "parks" object if present; otherwise use top-level.
-      let source = data.parks && typeof data.parks === "object" ? data.parks : data;
-
-      for (const [key, value] of Object.entries(source)) {
-        const lowerKey = key.toLowerCase();
-
-        // Ignore config-like keys
-        if (lowerKey.includes("target") || lowerKey.includes("percent")) continue;
-        if (value == null) continue;
-
+    } else {
+      // Otherwise, use top-level numeric keys except target_percentage
+      for (const [key, value] of Object.entries(data)) {
+        if (key === "target_percentage") continue;
         if (typeof value === "number") {
-          result.hourlyRates[key] = value;
-        } else if (typeof value === "object") {
-          if (typeof value.hourly_rate === "number") {
-            result.hourlyRates[key] = value.hourly_rate;
-          } else if (typeof value.rate === "number") {
-            result.hourlyRates[key] = value.rate;
-          } else if (typeof value.wage === "number") {
-            result.hourlyRates[key] = value.wage;
-          }
+          parks[key] = value;
         }
-      }
-
-      if (Object.keys(result.hourlyRates).length === 0) {
-        // Fall back if nothing parseable
-        result.hourlyRates = { ...FALLBACK_RATES };
-      }
-
-      return result;
-    }
-
-    async function loadDailyTotals() {
-      try {
-        const res = await fetch("daily_totals.json", { cache: "no-store" });
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        dailyTotals = await res.json();
-
-        const meta = document.getElementById("dailyTotalsMeta");
-        if (meta) {
-          const now = new Date();
-          meta.textContent = "Loaded daily_totals.json • " + now.toLocaleString();
-        }
-      } catch (err) {
-        console.warn("daily_totals.json not found or invalid, daily section will be empty:", err);
-        dailyTotals = null;
-        const meta = document.getElementById("dailyTotalsMeta");
-        if (meta) meta.textContent = "No daily_totals.json found";
       }
     }
 
-    // --------- UI UPDATES ---------
+    if (Object.keys(parks).length === 0) {
+      console.warn("No valid parks found in rates.json, using defaults");
+      hourlyRates = { ...DEFAULT_RATES };
+    } else {
+      hourlyRates = parks;
+    }
+  }
 
-    function populateParkSelect() {
-      const select = document.getElementById("parkSelect");
-      if (!select) return;
+  function populateParkSelect() {
+    const parkSelect = document.getElementById("parkSelect");
+    if (!parkSelect) return;
 
-      select.innerHTML = "";
+    parkSelect.innerHTML = "";
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "-- Choose a Park --";
+    parkSelect.appendChild(placeholder);
 
-      const placeholder = document.createElement("option");
-      placeholder.value = "";
-      placeholder.textContent = "-- Choose a Park --";
-      placeholder.disabled = true;
-      placeholder.selected = true;
-      select.appendChild(placeholder);
+    const parkNames = Object.keys(hourlyRates).sort();
+    parkNames.forEach((name) => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      parkSelect.appendChild(opt);
+    });
+  }
 
-      Object.keys(hourlyRates)
-        .sort((a, b) => a.localeCompare(b))
-        .forEach((name) => {
-          const opt = document.createElement("option");
-          opt.value = name;
-          opt.textContent = name;
-          select.appendChild(opt);
-        });
+  function updateTargetDisplay() {
+    const targetEl = document.getElementById("targetPercentDisplay");
+    if (targetEl) {
+      targetEl.textContent = targetPercent.toFixed(0) + "%";
+    }
+  }
 
-      select.addEventListener("change", () => {
-        selectedPark = select.value;
-        updateParkInfo();
+  // ---------- LABOR CALCULATION ----------
+  function recalcLabor() {
+    const parkSelect = document.getElementById("parkSelect");
+    const hoursInput = document.getElementById("laborHoursInput");
+    const revenueInput = document.getElementById("revenueInput");
+    const hourlyRateDisplay = document.getElementById("hourlyRateDisplay");
+    const laborPercentDisplay = document.getElementById("laborPercentDisplay");
+    const laborCostDisplay = document.getElementById("laborCostDisplay");
+
+    if (!parkSelect || !hoursInput || !revenueInput) return;
+
+    const park = parkSelect.value;
+    const rate = hourlyRates[park];
+
+    if (!rate) {
+      if (hourlyRateDisplay) hourlyRateDisplay.textContent = "$0.00 / hour";
+      if (laborPercentDisplay) laborPercentDisplay.textContent = "--%";
+      if (laborCostDisplay) laborCostDisplay.textContent = "$0.00";
+      setStatus(NaN);
+      return;
+    }
+
+    if (hourlyRateDisplay) {
+      hourlyRateDisplay.textContent = formatCurrency(rate) + " / hour";
+    }
+
+    const hours = parseFloat(hoursInput.value);
+    const revenue = parseFloat(revenueInput.value);
+
+    if (!isFinite(hours) || hours <= 0 || !isFinite(revenue) || revenue <= 0) {
+      if (laborPercentDisplay) laborPercentDisplay.textContent = "--%";
+      if (laborCostDisplay) laborCostDisplay.textContent = "$0.00";
+      setStatus(NaN);
+      return;
+    }
+
+    const laborCost = hours * rate;
+    const laborPercent = (laborCost / revenue) * 100;
+
+    if (laborPercentDisplay) {
+      laborPercentDisplay.textContent = formatPercent(laborPercent);
+    }
+    if (laborCostDisplay) {
+      laborCostDisplay.textContent = formatCurrency(laborCost);
+    }
+
+    setStatus(laborPercent);
+  }
+
+  // ---------- DAILY TOTALS ----------
+  async function loadDailyTotals() {
+    const msgEl = document.getElementById("dailyTotalsMessage");
+
+    try {
+      const response = await fetch("daily_totals.json", { cache: "no-cache" });
+      if (!response.ok) throw new Error("HTTP " + response.status);
+
+      const data = await response.json();
+      // Expecting the structure you pasted:
+      // { "weekOf": "...", "parks": { "Appleton": { "days": [...] }, ... } }
+      dailyTotals = data;
+
+      const weekOfLabel = document.getElementById("weekOfLabel");
+      if (weekOfLabel && data.weekOf) {
+        weekOfLabel.textContent = data.weekOf;
+      }
+
+      populateDailyParkSelect();
+      syncDailyParkWithMain();
+      renderDailyTotals();
+
+      if (msgEl) msgEl.textContent = "";
+    } catch (err) {
+      console.error("Error loading daily_totals.json:", err);
+      if (msgEl) msgEl.textContent = "Could not load daily_totals.json.";
+    }
+  }
+
+  function populateDailyParkSelect() {
+    const dailySelect = document.getElementById("dailyParkSelect");
+    if (!dailySelect) return;
+
+    dailySelect.innerHTML = "";
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = "-- Match selected park --";
+    dailySelect.appendChild(placeholder);
+
+    if (!dailyTotals || !dailyTotals.parks) return;
+
+    const parkNames = Object.keys(dailyTotals.parks).sort();
+    parkNames.forEach((name) => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = name;
+      dailySelect.appendChild(opt);
+    });
+  }
+
+  function syncDailyParkWithMain() {
+    if (manualDailyParkSelection) return; // user already chose something
+
+    const parkSelect = document.getElementById("parkSelect");
+    const dailySelect = document.getElementById("dailyParkSelect");
+    if (!parkSelect || !dailySelect) return;
+
+    const mainPark = parkSelect.value;
+    if (!mainPark) return;
+
+    const option = dailySelect.querySelector(`option[value="${mainPark}"]`);
+    if (option) {
+      dailySelect.value = mainPark;
+    }
+  }
+
+  function renderDailyTotals() {
+    const dailyTable = document.getElementById("dailyTotalsTable");
+    const body = document.getElementById("dailyTotalsBody");
+    const msgEl = document.getElementById("dailyTotalsMessage");
+    const dailySelect = document.getElementById("dailyParkSelect");
+
+    if (!dailyTable || !body || !dailySelect) return;
+
+    const parkName = dailySelect.value;
+    if (!dailyTotals || !dailyTotals.parks || !parkName || !dailyTotals.parks[parkName]) {
+      body.innerHTML = "";
+      dailyTable.classList.add("hidden");
+      if (msgEl) msgEl.textContent = "No data yet. Once we read daily_totals.json, recent days for this park will appear here.";
+      return;
+    }
+
+    const parkData = dailyTotals.parks[parkName];
+    const days = parkData.days || [];
+
+    body.innerHTML = "";
+
+    days.forEach((day) => {
+      const tr = document.createElement("tr");
+
+      const pct = (typeof day.pct === "number" && isFinite(day.pct))
+        ? day.pct
+        : (day.revenue > 0 ? (day.cost / day.revenue) * 100 : 0);
+
+      const cells = [
+        day.dow || "",
+        day.hours != null ? day.hours.toFixed(2) : "",
+        formatCurrency(day.cost || 0),
+        formatCurrency(day.revenue || 0),
+        formatPercent(pct)
+      ];
+
+      cells.forEach((text) => {
+        const td = document.createElement("td");
+        td.textContent = text;
+        tr.appendChild(td);
+      });
+
+      body.appendChild(tr);
+    });
+
+    dailyTable.classList.remove("hidden");
+    if (msgEl) msgEl.textContent = "";
+  }
+
+  // ---------- INIT ----------
+  document.addEventListener("DOMContentLoaded", () => {
+    const parkSelect = document.getElementById("parkSelect");
+    const hoursInput = document.getElementById("laborHoursInput");
+    const revenueInput = document.getElementById("revenueInput");
+    const dailySelect = document.getElementById("dailyParkSelect");
+
+    if (parkSelect) {
+      parkSelect.addEventListener("change", () => {
+        recalcLabor();
+        syncDailyParkWithMain();
+        renderDailyTotals();
       });
     }
 
-    function updateParkInfo() {
-      const rateSpan = document.getElementById("hourlyRate");
-
-      if (!selectedPark || !hourlyRates[selectedPark]) {
-        rateSpan.textContent = "$0.00";
-      } else {
-        rateSpan.textContent = formatCurrency(hourlyRates[selectedPark]);
-      }
-
-      updateCalculations();
-      updateDailyTotalsSection();
+    if (hoursInput) {
+      hoursInput.addEventListener("input", recalcLabor);
     }
 
-    function updateTargetDisplay() {
-      const el = document.getElementById("targetDisplay");
-      if (!el) return;
-      const val = Number.isFinite(targetPercentage) ? targetPercentage : DEFAULT_TARGET_PERCENTAGE;
-      // Avoid trailing ".0"
-      el.textContent = val.toFixed(1).replace(/\.0$/, "");
+    if (revenueInput) {
+      revenueInput.addEventListener("input", recalcLabor);
     }
 
-    function updateCalculations() {
-      const hoursInput = document.getElementById("laborHours");
-      const revenueInput = document.getElementById("revenue");
-
-      const hours = parseFloat(hoursInput.value) || 0;
-      const revenue = parseFloat(revenueInput.value) || 0;
-      const rate = selectedPark && hourlyRates[selectedPark] ? hourlyRates[selectedPark] : 0;
-
-      const laborCost = hours * rate;
-      const laborCostEl = document.getElementById("laborCost");
-      laborCostEl.textContent = formatCurrency(laborCost);
-
-      let percent = 0;
-      if (revenue > 0 && laborCost >= 0) {
-        percent = (laborCost / revenue) * 100;
-      }
-
-      const percentEl = document.getElementById("laborPercentage");
-      if (!revenue || !hours || !selectedPark) {
-        percentEl.textContent = "--%";
-      } else {
-        percentEl.textContent = percent.toFixed(1) + "%";
-      }
-
-      const statusEl = document.getElementById("laborStatus");
-      statusEl.className = "status-pill"; // reset
-
-      if (!selectedPark || !hours || !revenue) {
-        statusEl.textContent = "Waiting for inputs…";
-        statusEl.classList.add("status-neutral");
-        return;
-      }
-
-      if (percent <= 15) {
-        statusEl.textContent = "Excellent (≤ 15%)";
-        statusEl.classList.add("status-excellent");
-      } else if (percent <= targetPercentage) {
-        statusEl.textContent = "On Target (≤ " + targetPercentage + "%)";
-        statusEl.classList.add("status-good");
-      } else if (percent <= targetPercentage + 4) {
-        statusEl.textContent = "Slightly Above Target";
-        statusEl.classList.add("status-warn");
-      } else if (percent <= targetPercentage + 10) {
-        statusEl.textContent = "High — Needs Attention";
-        statusEl.classList.add("status-high");
-      } else {
-        statusEl.textContent = "Critical — Way Over";
-        statusEl.classList.add("status-critical");
-      }
+    if (dailySelect) {
+      dailySelect.addEventListener("change", () => {
+        manualDailyParkSelection = true;
+        renderDailyTotals();
+      });
     }
 
-    function updateDailyTotalsSection() {
-      const msg = document.getElementById("dailyTotalsMessage");
-      const container = document.getElementById("dailyTotalsContent");
-      if (!msg || !container) return;
+    loadRates();
+    loadDailyTotals();
+  });
+</script>
 
-      container.innerHTML = "";
-
-      if (!selectedPark) {
-        msg.textContent = "Choose a park above to see recent daily totals pulled from daily_totals.json.";
-        return;
-      }
-
-      if (!dailyTotals) {
-        msg.textContent = "No daily_totals.json loaded. Daily section is informational only.";
-        return;
-      }
-
-      const rows = getDailyRowsForPark(selectedPark);
-
-      if (!rows.length) {
-        msg.textContent =
-          "No daily totals found for “" +
-          selectedPark +
-          "”. Check that daily_totals.json includes this park.";
-        return;
-      }
-
-      msg.textContent = "";
-
-      const table = document.createElement("table");
-      table.className = "totals-table";
-
-      const thead = document.createElement("thead");
-      thead.innerHTML = `
-        <tr>
-          <th>Date</th>
-          <th>Labor Hours</th>
-          <th>Revenue</th>
-          <th>Labor %</th>
-          <th>vs
-
+</body>
+</html>
 
