@@ -347,6 +347,12 @@
       background: rgba(30, 64, 175, 0.55);
     }
 
+    /* Totals row */
+    tbody tr.total-row {
+      font-weight: 600;
+      border-top: 1px solid #334155;
+    }
+
     .pill {
       display: inline-flex;
       padding: 1px 6px;
@@ -368,12 +374,6 @@
     .pill-na {
       border-color: rgba(75, 85, 99, 0.9);
       color: var(--muted);
-    }
-
-    .info-line {
-      font-size: 0.76rem;
-      color: var(--muted);
-      margin-top: 4px;
     }
 
     .hidden {
@@ -459,10 +459,6 @@
             </div>
           </div>
         </div>
-
-        <div class="helper">
-          Tip: Have GMs add this to their home screen for a one-tap labor check.
-        </div>
       </section>
     </div>
 
@@ -495,11 +491,6 @@
         </thead>
         <tbody id="weeklyBody"></tbody>
       </table>
-
-      <div class="info-line">
-        This table reads your Roller export via <code>daily_totals.json</code> with the shape you pasted:
-        <code>{"weekOf": "...", "parks": { "Appleton": { "days": [...] }, ... }}</code>
-      </div>
     </section>
   </div>
 
@@ -661,7 +652,7 @@
 
       if (!table || !body) return;
 
-      // No weekly data or no park selected
+      // No weekly data loaded
       if (!weeklyData) {
         table.classList.add("hidden");
         if (parkLabel) {
@@ -670,6 +661,7 @@
         return;
       }
 
+      // No park selected
       if (!park) {
         table.classList.add("hidden");
         if (parkLabel) {
@@ -678,6 +670,7 @@
         return;
       }
 
+      // We have data + park
       parkLabel.textContent = "Daily labor % for " + park + " (current week)";
 
       const parkBlock = weeklyData.parks && weeklyData.parks[park]
@@ -699,12 +692,21 @@
       if (msgEl) msgEl.textContent = "";
       body.innerHTML = "";
 
+      let totalHours = 0;
+      let totalCost = 0;
+      let totalRevenue = 0;
+
+      // Day-by-day rows
       days.forEach((d) => {
         const tr = document.createElement("tr");
 
         const hours = Number(d.hours) || 0;
         const cost = Number(d.cost) || 0;
         const revenue = Number(d.revenue) || 0;
+
+        totalHours += hours;
+        totalCost += cost;
+        totalRevenue += revenue;
 
         let pct = Number(d.pct);
         if (!Number.isFinite(pct) || pct === 0) {
@@ -753,6 +755,55 @@
         body.appendChild(tr);
       });
 
+      // Totals row at the bottom
+      const totalRow = document.createElement("tr");
+      totalRow.classList.add("total-row");
+
+      const totalPct = totalRevenue > 0 ? (totalCost / totalRevenue) * 100 : NaN;
+
+      const tdLabel = document.createElement("td");
+      tdLabel.textContent = "Total";
+
+      const tdHoursTotal = document.createElement("td");
+      tdHoursTotal.textContent = totalHours.toFixed(2);
+
+      const tdCostTotal = document.createElement("td");
+      tdCostTotal.textContent = formatCurrency(totalCost);
+
+      const tdRevenueTotal = document.createElement("td");
+      tdRevenueTotal.textContent = formatCurrency(totalRevenue);
+
+      const tdPctTotal = document.createElement("td");
+      tdPctTotal.textContent = Number.isFinite(totalPct)
+        ? totalPct.toFixed(1) + "%"
+        : "—";
+
+      const tdVsTotal = document.createElement("td");
+      const pillTotal = document.createElement("span");
+      pillTotal.classList.add("pill");
+
+      if (!Number.isFinite(totalPct) || totalRevenue === 0) {
+        pillTotal.classList.add("pill-na");
+        pillTotal.textContent = "n/a";
+      } else if (totalPct <= TARGET_PERCENT) {
+        pillTotal.classList.add("pill-good");
+        pillTotal.textContent = "≤ target";
+      } else {
+        pillTotal.classList.add("pill-bad");
+        pillTotal.textContent = "> target";
+      }
+
+      tdVsTotal.appendChild(pillTotal);
+
+      totalRow.appendChild(tdLabel);
+      totalRow.appendChild(tdHoursTotal);
+      totalRow.appendChild(tdCostTotal);
+      totalRow.appendChild(tdRevenueTotal);
+      totalRow.appendChild(tdPctTotal);
+      totalRow.appendChild(tdVsTotal);
+
+      body.appendChild(totalRow);
+
       table.classList.remove("hidden");
     }
 
@@ -788,3 +839,4 @@
   </script>
 </body>
 </html>
+
