@@ -1,343 +1,842 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Labor % Calculator</title>
-  <meta name="description" content="AMG Labor Percentage Calculator by park location" />
-  <link rel="icon" href="logo.png" />
+  <meta charset="UTF-8" />
+  <title>AMG Labor % Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #ffffff;
-      --card: #fafafa;
-      --border: #eaeaea;
-      --text: #111;
-      --muted: #666;
-      --accent: #0a7cff;
-      --good: #00a884;
-      --warn: #f59e0b;
-      --bad:  #ef4444;
+      color-scheme: dark;
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card: #020617;
+      --border: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --success: #22c55e;
+      --warn: #eab308;
+      --danger: #ef4444;
       --radius: 14px;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
     body {
-      margin: 0; padding: 24px;
-      font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text); background: var(--bg);
+      margin: 0;
+      padding: 16px;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 50%, #000 100%);
+      color: var(--text);
     }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
     header {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 18px;
-    }
-    header img { width: 44px; height: 44px; border-radius: 10px; }
-    h1 { font-size: 1.4rem; margin: 0; }
-    .wrap { max-width: 760px; margin: 0 auto; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 16px;
     }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-    .control label { display: block; font-weight: 600; margin-bottom: 6px; }
-    select, input {
-      width: 100%;
-      padding: 10px 12px;
+
+    header img {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: #020617;
+      padding: 4px 6px;
+      object-fit: contain;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: linear-gradient(135deg, #020617, #020617 60%, #020617);
+      border-radius: var(--radius);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      padding: 14px 16px 16px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
       font-size: 1rem;
-      background: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
     }
-    output, .stat {
+
+    .card h2 span {
+      font-size: 0.78rem;
+      font-weight: normal;
+      color: var(--muted);
+    }
+
+    .field {
+      margin-bottom: 10px;
+    }
+
+    .field label {
       display: block;
-      font-weight: 700;
-      font-size: 1.25rem;
-      padding: 10px 12px;
-      border: 1px dashed var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    select,
+    input[type="number"] {
+      width: 100%;
+      padding: 9px 10px;
       border-radius: 10px;
-      background: #fff;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      outline: none;
+      background: #020617;
+      color: var(--text);
+      transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      -moz-appearance: textfield;
     }
-    .hint { color: var(--muted); font-size: .92rem; }
-    .pct { font-variant-numeric: tabular-nums; }
-    .money, .hours { font-variant-numeric: tabular-nums; }
-    .gauge {
-      height: 12px; border-radius: 999px; background: #eee; overflow: hidden; margin-top: 8px;
-    }
-    .gauge > span { display: block; height: 100%; background: var(--good); width: 0%; transition: width .2s ease; }
-    .gauge.bad > span { background: var(--bad); }
-    .gauge.warn > span { background: var(--warn); }
-    #daily-totals { margin-top: 2px; }
-    #daily-totals h2 { margin: 0 0 6px 0; font-size: 1.1rem; }
-    #daily-totals-note { color: var(--muted); font-size: .92rem; margin-bottom: 6px; }
-    #daily-totals-list {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-      line-height: 1.55;
-      white-space: pre-wrap;
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
       margin: 0;
     }
-    footer { margin-top: 20px; color: var(--muted); font-size: .9rem; }
-    @media (max-width: 720px) {
-      .row, .row-3 { grid-template-columns: 1fr; }
+
+    select:focus,
+    input[type="number"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+      background: #020617;
+    }
+
+    .static {
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px dashed var(--border);
+      font-size: 0.95rem;
+      font-variant-numeric: tabular-nums;
+      background: #020617;
+    }
+
+    .static strong {
+      font-size: 1rem;
+    }
+
+    .muted {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .results-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .results-main {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .big-number {
+      font-size: 2.2rem;
+      font-weight: 650;
+      font-variant-numeric: tabular-nums;
+      margin: 2px 0;
+    }
+
+    .big-number span.small {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 4px;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 3px 9px;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--muted);
+    }
+
+    .status-neutral {
+      background: rgba(75, 85, 99, 0.2);
+      color: var(--muted);
+    }
+
+    .status-good {
+      border-color: rgba(34, 197, 94, 0.7);
+      background: rgba(22, 163, 74, 0.18);
+      color: #bbf7d0;
+    }
+
+    .status-good .status-dot {
+      background: var(--success);
+    }
+
+    .status-ok {
+      border-color: rgba(59, 130, 246, 0.7);
+      background: rgba(59, 130, 246, 0.18);
+      color: #bfdbfe;
+    }
+
+    .status-ok .status-dot {
+      background: #3b82f6;
+    }
+
+    .status-warn {
+      border-color: rgba(234, 179, 8, 0.7);
+      background: rgba(234, 179, 8, 0.18);
+      color: #facc15;
+    }
+
+    .status-warn .status-dot {
+      background: #eab308;
+    }
+
+    .status-bad {
+      border-color: rgba(239, 68, 68, 0.8);
+      background: rgba(239, 68, 68, 0.18);
+      color: #fecaca;
+    }
+
+    .status-bad .status-dot {
+      background: var(--danger);
+    }
+
+    .delta-row {
+      margin-top: 4px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .delta-positive {
+      color: var(--danger);
+    }
+
+    .delta-negative {
+      color: var(--success);
+    }
+
+    .helper {
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .helper code {
+      font-size: 0.78rem;
+      background: #020617;
+      padding: 1px 4px;
+      border-radius: 5px;
+    }
+
+    /* Weekly snapshot */
+    .card-wide {
+      margin-top: 4px;
+    }
+
+    .weekly-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 4px;
+      font-size: 0.86rem;
+    }
+
+    .weekly-header span {
+      color: var(--muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 0.82rem;
+      margin-top: 6px;
+    }
+
+    thead {
+      background: #020617;
+    }
+
+    th, td {
+      padding: 6px 7px;
+      border-bottom: 1px solid #111827;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    tbody tr:nth-child(odd) {
+      background: #020617;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #020617;
+    }
+
+    tbody tr:hover {
+      background: rgba(30, 64, 175, 0.55);
+    }
+
+    /* Totals row */
+    tbody tr.total-row {
+      font-weight: 600;
+      border-top: 1px solid #334155;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 1px 6px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.74rem;
+    }
+
+    .pill-good {
+      border-color: rgba(34, 197, 94, 0.8);
+      color: #bbf7d0;
+    }
+
+    .pill-bad {
+      border-color: rgba(239, 68, 68, 0.9);
+      color: #fecaca;
+    }
+
+    .pill-na {
+      border-color: rgba(75, 85, 99, 0.9);
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="page">
     <header>
       <img src="logo.png" alt="AMG Logo" />
       <div>
-        <h1>Labor % Calculator</h1>
-        <div class="hint">Calculate labor percentage by park location</div>
+        <h1>Labor % Dashboard</h1>
+        <p>Quick labor % check by park, plus a weekly snapshot from Roller exports.</p>
       </div>
     </header>
 
-    <!-- Park selection -->
-    <section class="card" aria-labelledby="park-title">
-      <div class="row">
-        <div class="control">
-          <label id="park-title" for="parkSelect">Select Park Location</label>
-          <select id="parkSelect" aria-describedby="park-help">
+    <!-- TOP: Calculator -->
+    <div class="layout">
+      <section class="card">
+        <h2>Inputs <span>Select park, then enter hours &amp; revenue</span></h2>
+
+        <div class="field">
+          <label for="parkSelect">Park</label>
+          <select id="parkSelect">
             <option value="">-- Choose a Park --</option>
-            <!-- options injected from rates.json -->
           </select>
-          <div id="park-help" class="hint"></div>
+          <div class="muted">Hourly rates are built into this page.</div>
         </div>
 
-        <div class="control">
-          <label for="hourlyRateValue">Hourly Rate</label>
-          <output id="hourlyRateValue" class="money" aria-live="polite">$0.00</output>
-          <div class="hint">Pulled from <code>rates.json</code></div>
+        <div class="field">
+          <label>Hourly Rate</label>
+          <div id="hourlyRateDisplay" class="static">
+            <strong>$0.00</strong> / hour
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="hoursInput">Labor Hours Total</label>
+          <input id="hoursInput" type="number" min="0" step="0.25" placeholder="e.g. 128.5" />
+        </div>
+
+        <div class="field">
+          <label for="revenueInput">Revenue ($)</label>
+          <input id="revenueInput" type="number" min="0" step="0.01" placeholder="e.g. 18250" />
+        </div>
+
+        <div class="helper">
+          Formula:
+          <code>Labor Cost = Hours × Hourly Rate</code>
+          &nbsp;&nbsp;
+          <code>Labor % = Labor Cost ÷ Revenue</code>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Results <span>Target ≤ <strong id="targetLabel">18%</strong></span></h2>
+
+        <div class="results-main">
+          <div>
+            <div class="field">
+              <label>Labor Percentage</label>
+              <div id="laborPercentDisplay" class="big-number">
+                --<span class="small">%</span>
+              </div>
+            </div>
+
+            <div id="statusPill" class="status-pill status-neutral">
+              <span class="status-dot"></span>
+              <span id="statusText">Waiting for inputs…</span>
+            </div>
+
+            <div class="delta-row">
+              <span>Target: <strong id="targetLabelInline">18%</strong></span>
+              <span id="deltaText"></span>
+            </div>
+          </div>
+
+          <div>
+            <div class="field">
+              <label>Calculated Labor Cost</label>
+              <div id="laborCostDisplay" class="big-number">$0.00</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOTTOM: Weekly snapshot from daily_totals.json -->
+    <section class="card card-wide">
+      <h2>Weekly Snapshot
+        <span>Week of <strong id="weekOfLabel">—</strong></span>
+      </h2>
+
+      <div class="weekly-header">
+        <div>
+          <span id="weeklyParkLabel">Select a park above to see this week’s daily labor %.</span>
         </div>
       </div>
-    </section>
 
-    <!-- Inputs -->
-    <section class="card">
-      <div class="row">
-        <div class="control">
-          <label for="laborHours">Labor Hours Total</label>
-          <input id="laborHours" inputmode="decimal" type="number" min="0" step="0.01" placeholder="e.g., 125.5" />
-        </div>
-        <div class="control">
-          <label for="revenue">Revenue ($)</label>
-          <input id="revenue" inputmode="decimal" type="number" min="0" step="0.01" placeholder="e.g., 5200" />
-        </div>
+      <div id="weeklyMessage" class="muted">
+        Loading <code>daily_totals.json</code>…
       </div>
-    </section>
 
-    <!-- Outputs -->
-    <section class="card">
-      <div class="row">
-        <div class="control">
-          <label for="laborPctValue">Labor Percentage</label>
-          <output id="laborPctValue" class="pct">--%</output>
-          <div id="pctGauge" class="gauge" aria-hidden="true"><span style="width:0%"></span></div>
-          <div class="hint">Target ≤ 18%</div>
-        </div>
-        <div class="control">
-          <label for="calcLaborCost">Calculated Labor Cost</label>
-          <output id="calcLaborCost" class="money">$0.00</output>
-        </div>
-      </div>
+      <table id="weeklyTable" class="hidden">
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Hours</th>
+            <th>Labor Cost</th>
+            <th>Revenue</th>
+            <th>Labor %</th>
+            <th>vs Target</th>
+          </tr>
+        </thead>
+        <tbody id="weeklyBody"></tbody>
+      </table>
     </section>
-
-    <!-- Daily Totals (per-park) -->
-    <section id="daily-totals" class="card" aria-labelledby="daily-totals-title">
-      <h2 id="daily-totals-title">Daily Totals</h2>
-      <div id="daily-totals-note" class="hint"></div>
-      <pre id="daily-totals-list" aria-label="Daily totals (monospaced)"></pre>
-    </section>
-
-    <footer>
-      <span class="hint">This calculator reads <code>rates.json</code> and <code>daily_totals.json</code> from GitHub Pages (absolute URLs), with a local fallback for development.</span>
-    </footer>
   </div>
 
   <script>
-    (function () {
-      // --- Absolute origin for hosted JSON (TestFlight-safe) ---
-      const ORIGIN = 'https://cryback.github.io/amglabor';
+    // ---------- CONFIG ----------
+    const TARGET_PERCENT = 18;
 
-      // Helper: try absolute URL first (GitHub Pages), then fall back to relative for local/dev use.
-      async function fetchJSON(name) {
-        try {
-          const abs = await fetch(`${ORIGIN}/${name}`, { cache: 'no-store' });
-          if (!abs.ok) throw new Error(`${name} HTTP ${abs.status}`);
-          return await abs.json();
-        } catch (e) {
-          // Fallback if offline or running from local file:// or a dev server with local copies
-          const rel = await fetch(name, { cache: 'no-store' });
-          if (!rel.ok) throw new Error(`${name} (relative) HTTP ${rel.status}`);
-          return await rel.json();
+    // Built-in park hourly rates (no rates.json needed)
+    const PARKS = {
+      "Appleton": 17.32,
+      "Austell": 16.07,
+      "Gastonia": 16.99,
+      "Huntsville": 14.86,
+      "Lawrenceville": 13.55,
+      "Lombard": 18.87,
+      "Nashville": 17.10,
+      "Pueblo": 18.27,
+      "San Jose": 21.34,
+      "York": 18.22
+    };
+
+    let weeklyData = null; // will hold daily_totals.json contents
+
+    // ---------- HELPERS ----------
+    function formatCurrency(v) {
+      const n = Number(v);
+      if (!Number.isFinite(n)) return "$0.00";
+      return "$" + n.toFixed(2);
+    }
+
+    function setStatus(percent) {
+      const pill = document.getElementById("statusPill");
+      const text = document.getElementById("statusText");
+      const deltaText = document.getElementById("deltaText");
+
+      pill.className = "status-pill status-neutral";
+      deltaText.textContent = "";
+      deltaText.className = "";
+
+      if (!Number.isFinite(percent)) {
+        text.textContent = "Waiting for inputs…";
+        return;
+      }
+
+      let label = "";
+      let cls = "";
+
+      if (percent <= 15) {
+        label = "Excellent — Below 15%";
+        cls = "status-good";
+      } else if (percent <= TARGET_PERCENT) {
+        label = "On Target — Meeting goal";
+        cls = "status-ok";
+      } else if (percent <= TARGET_PERCENT + 4) {
+        label = "Slightly Above Target";
+        cls = "status-warn";
+      } else if (percent <= TARGET_PERCENT + 10) {
+        label = "High — Needs Attention";
+        cls = "status-bad";
+      } else {
+        label = "Critical — Way Over";
+        cls = "status-bad";
+      }
+
+      pill.classList.add(cls);
+      text.textContent = label;
+
+      const delta = percent - TARGET_PERCENT;
+      if (Math.abs(delta) < 0.1) {
+        deltaText.textContent = "Right at target.";
+      } else if (delta > 0) {
+        deltaText.textContent = "+" + delta.toFixed(1) + " pts above target";
+        deltaText.classList.add("delta-positive");
+      } else {
+        deltaText.textContent = delta.toFixed(1) + " pts below target";
+        deltaText.classList.add("delta-negative");
+      }
+    }
+
+    function getSelectedPark() {
+      const sel = document.getElementById("parkSelect");
+      return sel ? sel.value : "";
+    }
+
+    // ---------- CALCULATOR ----------
+    function recalc() {
+      const park = getSelectedPark();
+      const rate = PARKS[park];
+
+      const hourlyEl = document.getElementById("hourlyRateDisplay");
+      const percentEl = document.getElementById("laborPercentDisplay");
+      const costEl = document.getElementById("laborCostDisplay");
+
+      const hours = parseFloat(document.getElementById("hoursInput").value);
+      const revenue = parseFloat(document.getElementById("revenueInput").value);
+
+      if (!park || !Number.isFinite(rate)) {
+        hourlyEl.innerHTML = "<strong>$0.00</strong> / hour";
+        percentEl.innerHTML = "--<span class=\"small\">%</span>";
+        costEl.textContent = "$0.00";
+        setStatus(NaN);
+        return;
+      }
+
+      hourlyEl.innerHTML = "<strong>" + formatCurrency(rate) + "</strong> / hour";
+
+      if (!Number.isFinite(hours) || hours <= 0 || !Number.isFinite(revenue) || revenue <= 0) {
+        percentEl.innerHTML = "--<span class=\"small\">%</span>";
+        costEl.textContent = "$0.00";
+        setStatus(NaN);
+        return;
+      }
+
+      const laborCost = hours * rate;
+      const percent = (laborCost / revenue) * 100;
+
+      costEl.textContent = formatCurrency(laborCost);
+      percentEl.innerHTML = percent.toFixed(1) + "<span class=\"small\">%</span>";
+
+      setStatus(percent);
+    }
+
+    // ---------- WEEKLY SNAPSHOT ----------
+    async function loadWeeklyData() {
+      const msgEl = document.getElementById("weeklyMessage");
+      try {
+        const res = await fetch("daily_totals.json", { cache: "no-store" });
+        if (!res.ok) {
+          throw new Error("HTTP " + res.status);
         }
-      }
+        weeklyData = await res.json();
 
-      // Elements
-      const parkSelect = document.getElementById('parkSelect');
-      const parkHelp   = document.getElementById('park-help');
-      const hourlyOut  = document.getElementById('hourlyRateValue');
-      const hoursIn    = document.getElementById('laborHours');
-      const revIn      = document.getElementById('revenue');
-      const pctOut     = document.getElementById('laborPctValue');
-      const costOut    = document.getElementById('calcLaborCost');
-      const gauge      = document.getElementById('pctGauge').firstElementChild;
-      const gaugeWrap  = document.getElementById('pctGauge');
-
-      const dailyNote  = document.getElementById('daily-totals-note');
-      const dailyList  = document.getElementById('daily-totals-list');
-
-      // State
-      let rates = {};              // { ParkName: number }
-      let dailyTotalsByPark = {};  // { ParkName: { weekOf, days[], totalPct } }
-
-      // Utils
-      const fmtMoney = (n) =>
-        new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 }).format(Number(n || 0));
-
-      const fmtPct = (n) => (n == null || isNaN(n)) ? '--%' : (Number(n).toFixed(2) + '%');
-
-      const toNumber = (el) => {
-        const v = Number((el.value || '').toString().replace(/,/g, ''));
-        return isFinite(v) ? v : 0;
-      };
-
-      function classifyGauge(percent) {
-        // ≤18 good, 18–22 warn, >22 bad
-        const wrap = gaugeWrap;
-        wrap.classList.remove('good','warn','bad');
-        if (!isFinite(percent)) return;
-        if (percent <= 18) wrap.classList.add('good');
-        else if (percent <= 22) wrap.classList.add('warn');
-        else wrap.classList.add('bad');
-      }
-
-      function updateCalc() {
-        const park = parkSelect.value || '';
-        const rate = Number(rates[park] || 0);
-        const hours = toNumber(hoursIn);
-        const rev = toNumber(revIn);
-
-        hourlyOut.textContent = fmtMoney(rate);
-
-        const cost = rate * hours;
-        costOut.textContent = fmtMoney(cost);
-
-        let pct = NaN;
-        if (rev > 0) pct = (cost / rev) * 100;
-
-        pctOut.textContent = isFinite(pct) ? fmtPct(pct) : '--%';
-
-        const w = isFinite(pct) ? Math.max(0, Math.min(100, pct)) : 0;
-        gauge.style.width = w + '%';
-        classifyGauge(pct);
-      }
-
-      function renderDailyTotalsFor(parkName) {
-        const EMPTY =
-          'Mon - --/-- - 0.00 - $0.00 - --%\n' +
-          'Tue - --/-- - 0.00 - $0.00 - --%\n' +
-          'Wed - --/-- - 0.00 - $0.00 - --%\n' +
-          'Thu - --/-- - 0.00 - $0.00 - --%\n' +
-          'Fri - --/-- - 0.00 - $0.00 - --%\n' +
-          'Sat - --/-- - 0.00 - $0.00 - --%\n' +
-          'Sun - --/-- - 0.00 - $0.00 - --%\n\n' +
-          'Total - 0.00 - $0.00 - --%';
-
-        if (!parkName) {
-          dailyList.textContent = EMPTY;
-          dailyNote.textContent = 'Select a park.';
-          return;
-        }
-        const pack = dailyTotalsByPark[parkName];
-        if (!pack || !Array.isArray(pack.days)) {
-          dailyList.textContent = EMPTY;
-          dailyNote.textContent = `No daily totals found for ${parkName}.`;
-          return;
-        }
-        const lines = pack.days.map(d =>
-          `${d.dow} - ${d.date} - ${Number(d.hours ?? 0).toFixed(2)} - ${fmtMoney(d.cost)} - ${fmtPct(d.pct)}`
-        );
-
-        const totalHours = pack.days.reduce((s, d) => s + Number(d.hours || 0), 0);
-        const totalCost  = pack.days.reduce((s, d) => s + Number(d.cost  || 0), 0);
-        lines.push('');
-        lines.push(`Total - ${totalHours.toFixed(2)} - ${fmtMoney(totalCost)} - ${fmtPct(pack.totalPct)}`);
-
-        dailyList.textContent = lines.join('\n');
-        dailyNote.textContent = `Week of ${pack.weekOf} — ${parkName}`;
-      }
-
-      function onParkChange() {
-        updateCalc();
-        renderDailyTotalsFor(parkSelect.value || '');
-      }
-
-      // Loaders
-      async function loadRates() {
-        const data = await fetchJSON('rates.json');
-
-        // Accept either object map {Park: rate} or array [{name, rate}]
-        if (Array.isArray(data)) {
-          data.forEach(row => {
-            if (row && row.name) rates[row.name] = Number(row.rate || row.value || 0);
-          });
+        if (weeklyData && weeklyData.weekOf) {
+          document.getElementById("weekOfLabel").textContent = weeklyData.weekOf;
         } else {
-          rates = Object.fromEntries(Object.entries(data).map(([k, v]) => [k, Number(v || 0)]));
+          document.getElementById("weekOfLabel").textContent = "—";
         }
 
-        // Build dropdown from rates keys
-        const parks = Object.keys(rates);
-        parks.sort((a,b) => a.localeCompare(b));
-        for (const name of parks) {
-          const opt = document.createElement('option');
-          opt.value = name; opt.textContent = name;
+        if (msgEl) {
+          msgEl.textContent = "Select a park above to see this week's daily breakdown.";
+        }
+
+        updateWeeklyTable();
+      } catch (err) {
+        console.warn("Could not load daily_totals.json:", err);
+        weeklyData = null;
+        if (msgEl) {
+          msgEl.textContent = "No daily_totals.json found or it could not be read.";
+        }
+      }
+    }
+
+    function updateWeeklyTable() {
+      const park = getSelectedPark();
+      const msgEl = document.getElementById("weeklyMessage");
+      const table = document.getElementById("weeklyTable");
+      const body = document.getElementById("weeklyBody");
+      const parkLabel = document.getElementById("weeklyParkLabel");
+
+      if (!table || !body) return;
+
+      // No weekly data loaded
+      if (!weeklyData) {
+        table.classList.add("hidden");
+        if (parkLabel) {
+          parkLabel.textContent = "No weekly data loaded yet.";
+        }
+        return;
+      }
+
+      // No park selected
+      if (!park) {
+        table.classList.add("hidden");
+        if (parkLabel) {
+          parkLabel.textContent = "Select a park above to see this week’s daily labor %.";
+        }
+        return;
+      }
+
+      // We have data + park
+      parkLabel.textContent = "Daily labor % for " + park + " (current week)";
+
+      const parkBlock = weeklyData.parks && weeklyData.parks[park]
+        ? weeklyData.parks[park]
+        : null;
+
+      const days = parkBlock && Array.isArray(parkBlock.days)
+        ? parkBlock.days
+        : [];
+
+      if (!days.length) {
+        table.classList.add("hidden");
+        if (msgEl) {
+          msgEl.textContent = "No daily rows found for " + park + " in daily_totals.json.";
+        }
+        return;
+      }
+
+      if (msgEl) msgEl.textContent = "";
+      body.innerHTML = "";
+
+      let totalHours = 0;
+      let totalCost = 0;
+      let totalRevenue = 0;
+
+      // Day-by-day rows
+      days.forEach((d) => {
+        const tr = document.createElement("tr");
+
+        const hours = Number(d.hours) || 0;
+        const cost = Number(d.cost) || 0;
+        const revenue = Number(d.revenue) || 0;
+
+        totalHours += hours;
+        totalCost += cost;
+        totalRevenue += revenue;
+
+        let pct = Number(d.pct);
+        if (!Number.isFinite(pct) || pct === 0) {
+          pct = revenue > 0 ? (cost / revenue) * 100 : 0;
+        }
+
+        const tdDay = document.createElement("td");
+        tdDay.textContent = d.dow || "";
+
+        const tdHours = document.createElement("td");
+        tdHours.textContent = hours.toFixed(2);
+
+        const tdCost = document.createElement("td");
+        tdCost.textContent = formatCurrency(cost);
+
+        const tdRevenue = document.createElement("td");
+        tdRevenue.textContent = formatCurrency(revenue);
+
+        const tdPct = document.createElement("td");
+        tdPct.textContent = pct.toFixed(1) + "%";
+
+        const tdVs = document.createElement("td");
+        const pill = document.createElement("span");
+        pill.classList.add("pill");
+
+        if (!Number.isFinite(pct) || revenue === 0) {
+          pill.classList.add("pill-na");
+          pill.textContent = "n/a";
+        } else if (pct <= TARGET_PERCENT) {
+          pill.classList.add("pill-good");
+          pill.textContent = "≤ target";
+        } else {
+          pill.classList.add("pill-bad");
+          pill.textContent = "> target";
+        }
+
+        tdVs.appendChild(pill);
+
+        tr.appendChild(tdDay);
+        tr.appendChild(tdHours);
+        tr.appendChild(tdCost);
+        tr.appendChild(tdRevenue);
+        tr.appendChild(tdPct);
+        tr.appendChild(tdVs);
+
+        body.appendChild(tr);
+      });
+
+      // Totals row at the bottom
+      const totalRow = document.createElement("tr");
+      totalRow.classList.add("total-row");
+
+      const totalPct = totalRevenue > 0 ? (totalCost / totalRevenue) * 100 : NaN;
+
+      const tdLabel = document.createElement("td");
+      tdLabel.textContent = "Total";
+
+      const tdHoursTotal = document.createElement("td");
+      tdHoursTotal.textContent = totalHours.toFixed(2);
+
+      const tdCostTotal = document.createElement("td");
+      tdCostTotal.textContent = formatCurrency(totalCost);
+
+      const tdRevenueTotal = document.createElement("td");
+      tdRevenueTotal.textContent = formatCurrency(totalRevenue);
+
+      const tdPctTotal = document.createElement("td");
+      tdPctTotal.textContent = Number.isFinite(totalPct)
+        ? totalPct.toFixed(1) + "%"
+        : "—";
+
+      const tdVsTotal = document.createElement("td");
+      const pillTotal = document.createElement("span");
+      pillTotal.classList.add("pill");
+
+      if (!Number.isFinite(totalPct) || totalRevenue === 0) {
+        pillTotal.classList.add("pill-na");
+        pillTotal.textContent = "n/a";
+      } else if (totalPct <= TARGET_PERCENT) {
+        pillTotal.classList.add("pill-good");
+        pillTotal.textContent = "≤ target";
+      } else {
+        pillTotal.classList.add("pill-bad");
+        pillTotal.textContent = "> target";
+      }
+
+      tdVsTotal.appendChild(pillTotal);
+
+      totalRow.appendChild(tdLabel);
+      totalRow.appendChild(tdHoursTotal);
+      totalRow.appendChild(tdCostTotal);
+      totalRow.appendChild(tdRevenueTotal);
+      totalRow.appendChild(tdPctTotal);
+      totalRow.appendChild(tdVsTotal);
+
+      body.appendChild(totalRow);
+
+      table.classList.remove("hidden");
+    }
+
+    // ---------- INIT ----------
+    document.addEventListener("DOMContentLoaded", () => {
+      // Fill park dropdown
+      const parkSelect = document.getElementById("parkSelect");
+      Object.keys(PARKS)
+        .sort((a, b) => a.localeCompare(b))
+        .forEach((name) => {
+          const opt = document.createElement("option");
+          opt.value = name;
+          opt.textContent = name;
           parkSelect.appendChild(opt);
-        }
-        parkHelp.textContent = parks.length ? `${parks.length} parks loaded from rates.json` : 'No parks found in rates.json';
+        });
 
-        // Auto-select first park so Daily Totals render immediately
-        if (!parkSelect.value && parks.length) {
-          parkSelect.value = parks[0];
-        }
-
-        // Diagnostics
-        console.log('rates.json loaded parks:', parks);
-      }
-
-      async function loadDailyTotals() {
-        try {
-          dailyTotalsByPark = await fetchJSON('daily_totals.json');
-
-          // Diagnostics: show which parks were found in daily_totals.json
-          console.log('daily_totals.json loaded parks:', Object.keys(dailyTotalsByPark));
-        } catch (err) {
-          dailyTotalsByPark = {};
-          dailyNote.textContent = 'Daily totals unavailable (could not load daily_totals.json).';
-          dailyList.textContent =
-            'Mon - --/-- - 0.00 - $0.00 - --%\nTue - --/-- - 0.00 - $0.00 - --%\nWed - --/-- - 0.00 - $0.00 - --%\nThu - --/-- - 0.00 - $0.00 - --%\nFri - --/-- - 0.00 - $0.00 - --%\nSat - --/-- - 0.00 - $0.00 - --%\nSun - --/-- - 0.00 - $0.00 - --%\n\nTotal - 0.00 - $0.00 - --%';
-          console.warn(err);
-        }
-      }
+      // Set target labels
+      document.getElementById("targetLabel").textContent = TARGET_PERCENT + "%";
+      document.getElementById("targetLabelInline").textContent = TARGET_PERCENT + "%";
 
       // Wire events
-      parkSelect.addEventListener('change', onParkChange);
-      hoursIn.addEventListener('input', updateCalc);
-      revIn.addEventListener('input', updateCalc);
+      parkSelect.addEventListener("change", () => {
+        recalc();
+        updateWeeklyTable();
+      });
 
-      // Init
-      (async function init() {
-        try {
-          await loadRates();
-          await loadDailyTotals();
-        } catch (e) {
-          console.warn(e);
-        } finally {
-          // Initial render (will use the auto-selected first park, if any)
-          onParkChange();
-        }
-      })();
-    })();
+      document.getElementById("hoursInput").addEventListener("input", recalc);
+      document.getElementById("revenueInput").addEventListener("input", recalc);
+
+      // Load weekly data
+      loadWeeklyData();
+    });
   </script>
 </body>
 </html>
+
