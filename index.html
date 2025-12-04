@@ -2,788 +2,669 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>AMG Labor % Calculator</title>
+  <title>Labor % Calculator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #0f172a;
-      --card-bg: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.1);
-      --success: #16a34a;
-      --warning: #f97316;
-      --danger: #ef4444;
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --radius-lg: 16px;
+      color-scheme: dark;
     }
 
     * {
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
     }
 
     body {
       margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top left, #1e293b, #020617);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
+      padding: 1.5rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1f2933 0, #020617 55%);
+      color: #e5e7eb;
     }
 
-    .page {
-      width: 100%;
-      max-width: 1100px;
-      padding: 16px;
+    .app {
+      max-width: 960px;
+      margin: 0 auto;
     }
 
     header {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
     }
 
     header img {
-      width: 56px;
       height: 56px;
-      object-fit: contain;
-      border-radius: 12px;
-      background: #020617;
-      padding: 4px;
+      width: auto;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.3rem 0.5rem;
     }
 
     header h1 {
       margin: 0;
       font-size: 1.7rem;
+      letter-spacing: 0.03em;
     }
 
     header p {
-      margin: 2px 0 0;
+      margin: 0.15rem 0 0;
+      color: #9ca3af;
       font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    @media (max-width: 768px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
     }
 
     .card {
-      background: linear-gradient(135deg, #020617, #020617 50%, #0b1220);
-      border-radius: var(--radius-lg);
-      padding: 16px 18px;
-      border: 1px solid var(--border);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 1rem;
+      padding: 1.2rem 1.4rem 1.4rem;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow:
+        0 18px 30px rgba(15, 23, 42, 0.7),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
     }
 
     .card h2 {
-      margin: 0 0 12px;
+      margin-top: 0;
+      margin-bottom: 0.8rem;
       font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #9ca3af;
     }
 
-    .card h2 span {
-      font-size: 0.8rem;
-      font-weight: normal;
-      color: var(--muted);
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem 1.25rem;
     }
 
-    .field {
-      margin-bottom: 12px;
-    }
-
-    .field label {
+    label {
       display: block;
       font-size: 0.85rem;
-      margin-bottom: 4px;
-      color: var(--muted);
+      margin-bottom: 0.25rem;
+      color: #9ca3af;
     }
 
-    /* Make select clearly readable on Mac/iOS */
-    select {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #f9fafb;   /* light background */
-      color: #111827;        /* dark text */
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
-    }
-
+    select,
     input[type="number"] {
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #020617;
-      color: var(--text);
+      border-radius: 0.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.45rem 0.6rem;
+      color: #e5e7eb;
       font-size: 0.95rem;
       outline: none;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      -moz-appearance: textfield;
     }
 
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    select:focus,
     input[type="number"]:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4);
+      background: rgba(15, 23, 42, 1);
     }
 
-    .static-value {
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px dashed var(--border);
-      background: #020617;
-      font-variant-numeric: tabular-nums;
-      font-size: 0.95rem;
+    .muted {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 0.2rem;
     }
 
-    .static-value strong {
-      font-size: 1rem;
+    .kpi-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
     }
 
-    .results-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 12px;
+    .kpi {
+      flex: 1 1 130px;
+      min-width: 130px;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.7rem;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
     }
 
-    @media (max-width: 768px) {
-      .results-grid {
-        grid-template-columns: 1fr;
-      }
+    .kpi-label {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    .big-number {
-      font-size: 2.3rem;
-      font-weight: 650;
-      font-variant-numeric: tabular-nums;
-      margin: 4px 0;
-    }
-
-    .big-number span.small {
+    .kpi-value {
       font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--muted);
-      margin-left: 4px;
+      font-weight: 600;
+    }
+
+    .kpi-highlight {
+      font-size: 1.2rem;
     }
 
     .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 9px;
+      padding: 0.25rem 0.6rem;
       border-radius: 999px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      border: 1px solid var(--border);
-      background: #020617;
-      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      border: 1px solid transparent;
     }
 
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--muted);
+    .status-neutral {
+      background: rgba(75, 85, 99, 0.25);
+      border-color: rgba(75, 85, 99, 0.5);
+      color: #e5e7eb;
+    }
+
+    .status-excellent {
+      background: rgba(22, 163, 74, 0.25);
+      border-color: rgba(34, 197, 94, 0.7);
+      color: #bbf7d0;
     }
 
     .status-good {
-      border-color: rgba(22, 163, 74, 0.6);
-      background: rgba(22, 163, 74, 0.1);
-      color: var(--success);
+      background: rgba(59, 130, 246, 0.2);
+      border-color: rgba(59, 130, 246, 0.7);
+      color: #bfdbfe;
     }
-
-    .status-good .status-dot { background: var(--success); }
-
-    .status-ok {
-      border-color: rgba(56, 189, 248, 0.6);
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--accent);
-    }
-
-    .status-ok .status-dot { background: var(--accent); }
 
     .status-warn {
-      border-color: rgba(249, 115, 22, 0.6);
-      background: rgba(249, 115, 22, 0.12);
-      color: var(--warning);
+      background: rgba(234, 179, 8, 0.2);
+      border-color: rgba(234, 179, 8, 0.7);
+      color: #facc15;
     }
 
-    .status-warn .status-dot { background: var(--warning); }
-
-    .status-bad {
-      border-color: rgba(239, 68, 68, 0.6);
-      background: rgba(239, 68, 68, 0.12);
-      color: var(--danger);
+    .status-high {
+      background: rgba(248, 113, 113, 0.16);
+      border-color: rgba(248, 113, 113, 0.7);
+      color: #fecaca;
     }
 
-    .status-bad .status-dot { background: var(--danger); }
+    .status-critical {
+      background: rgba(127, 29, 29, 0.7);
+      border-color: rgba(220, 38, 38, 0.85);
+      color: #fecaca;
+    }
 
-    .target-row {
-      margin-top: 6px;
-      font-size: 0.8rem;
-      color: var(--muted);
+    .daily-header {
       display: flex;
       justify-content: space-between;
-      gap: 8px;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
-    .delta-positive { color: var(--danger); }
-    .delta-negative { color: var(--success); }
-
-    .helper-text {
-      margin-top: 10px;
-      font-size: 0.78rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      padding-top: 8px;
-    }
-
-    .helper-text code {
-      font-size: 0.78rem;
-      background: #020617;
-      border-radius: 6px;
-      padding: 2px 4px;
-    }
-
-    .card-wide {
-      margin-top: 6px;
-    }
-
-    .card-wide h2 span {
-      max-width: 260px;
-      text-align: right;
-    }
-
-    .status-bar {
+    .daily-header small {
+      color: #6b7280;
       font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 6px;
     }
 
-    table {
+    .totals-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.8rem;
-      margin-top: 4px;
+      border-radius: 0.8rem;
+      overflow: hidden;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.85rem;
     }
 
-    th, td {
-      padding: 6px 6px;
+    .totals-table thead {
+      background: radial-gradient(circle at top left, #0f172a, #020617);
+    }
+
+    .totals-table th,
+    .totals-table td {
+      padding: 0.45rem 0.55rem;
       text-align: right;
-      border-bottom: 1px solid #111827;
-      font-variant-numeric: tabular-nums;
     }
 
-    th:first-child, td:first-child {
+    .totals-table th:first-child,
+    .totals-table td:first-child {
       text-align: left;
     }
 
-    th {
-      color: var(--muted);
-      font-weight: 500;
-      background: #020617;
-      position: sticky;
-      top: 0;
+    .totals-table tbody tr:nth-child(odd) {
+      background: rgba(15, 23, 42, 0.95);
     }
 
-    tbody tr:nth-child(even) {
-      background: #020617;
+    .totals-table tbody tr:nth-child(even) {
+      background: rgba(17, 24, 39, 0.95);
+    }
+
+    .totals-table tbody tr:hover {
+      background: rgba(30, 64, 175, 0.45);
     }
 
     .pill {
-      display: inline-block;
-      padding: 2px 6px;
+      display: inline-flex;
+      padding: 0.15rem 0.5rem;
       border-radius: 999px;
-      font-size: 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.75rem;
     }
 
     .pill-good {
-      background: rgba(22, 163, 74, 0.15);
-      color: var(--success);
+      border-color: rgba(34, 197, 94, 0.8);
+      color: #bbf7d0;
     }
 
     .pill-bad {
-      background: rgba(239, 68, 68, 0.15);
-      color: var(--danger);
+      border-color: rgba(239, 68, 68, 0.9);
+      color: #fecaca;
     }
 
-    .empty-message {
+    .pill-na {
+      border-color: rgba(75, 85, 99, 0.9);
+      color: #9ca3af;
+    }
+
+    .info-line {
       font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 4px;
+      color: #6b7280;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 0.9rem;
+      }
+
+      .card {
+        padding: 0.9rem 1rem 1.1rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header img {
+        height: 48px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="page">
+  <main class="app">
     <header>
       <img src="logo.png" alt="AMG Logo" />
       <div>
         <h1>Labor % Calculator</h1>
-        <p>Calculate labor percentage by park location (target 18%)</p>
+        <p>Calculate labor percentage by park location</p>
       </div>
     </header>
 
-    <div class="layout">
-      <!-- LEFT: Inputs -->
-      <section class="card">
-        <h2>Inputs <span>Select park, then enter hours &amp; revenue</span></h2>
-
-        <div class="field">
+    <section class="card" id="calculator">
+      <h2>Calculator</h2>
+      <div class="grid">
+        <div>
           <label for="parkSelect">Select Park Location</label>
           <select id="parkSelect">
-            <option value="">-- Choose a Park --</option>
-            <!-- Options will be filled by JavaScript, but we also add a fallback list below -->
+            <option value="" disabled selected>-- Choose a Park --</option>
           </select>
+          <div class="muted">Pulled from <code>rates.json</code></div>
         </div>
 
-        <div class="field">
+        <div>
           <label>Hourly Rate</label>
-          <div id="hourlyRate" class="static-value">
-            <strong>$0.00</strong> / hour
+          <div class="kpi">
+            <span class="kpi-label">Hourly Rate</span>
+            <span id="hourlyRate" class="kpi-value">$0.00</span>
           </div>
         </div>
 
-        <div class="field">
-          <label for="hoursInput">Labor Hours Total</label>
-          <input id="hoursInput" type="number" min="0" step="0.25" placeholder="e.g. 125" />
+        <div>
+          <label for="laborHours">Labor Hours Total</label>
+          <input
+            id="laborHours"
+            type="number"
+            inputmode="decimal"
+            step="0.01"
+            min="0"
+            placeholder="e.g. 145.5"
+          />
         </div>
 
-        <div class="field">
-          <label for="revenueInput">Revenue ($)</label>
-          <input id="revenueInput" type="number" min="0" step="0.01" placeholder="e.g. 8500" />
+        <div>
+          <label for="revenue">Revenue ($)</label>
+          <input
+            id="revenue"
+            type="number"
+            inputmode="decimal"
+            step="0.01"
+            min="0"
+            placeholder="e.g. 25000"
+          />
         </div>
-
-        <div class="helper-text">
-          Formula:
-          <code>Labor Cost = Hours × Hourly Rate</code>
-          &nbsp;&nbsp;
-          <code>Labor % = Labor Cost ÷ Revenue</code>
-        </div>
-      </section>
-
-      <!-- RIGHT: Results -->
-      <section class="card">
-        <h2>Results <span>Updates as you type</span></h2>
-        <div class="results-grid">
-          <div>
-            <div class="field">
-              <label>Labor Percentage</label>
-              <div id="laborPercent" class="big-number">
-                --<span class="small">%</span>
-              </div>
-            </div>
-
-            <div>
-              <span id="statusPill" class="status-pill">
-                <span class="status-dot"></span>
-                <span id="statusText">Waiting for inputs…</span>
-              </span>
-            </div>
-
-            <div class="target-row">
-              <span>Target: <strong>18%</strong></span>
-              <span id="deltaLabel"></span>
-            </div>
-          </div>
-
-          <div>
-            <div class="field">
-              <label>Calculated Labor Cost</label>
-              <div id="laborCost" class="big-number">$0.00</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="helper-text">
-          Tip: Have GMs add this page to their home screen for a one-tap labor check.
-        </div>
-      </section>
-    </div>
-
-    <!-- DAILY TOTALS -->
-    <section class="card card-wide">
-      <h2>Daily Totals <span>Reads from <code>daily_totals.json</code> if present</span></h2>
-      <div id="dailyStatus" class="status-bar">Loading daily totals…</div>
-      <div class="field">
-        <label for="dailyParkSelect">View Daily Totals for Park</label>
-        <select id="dailyParkSelect">
-          <option value="">-- Match selected park --</option>
-        </select>
       </div>
-      <div id="dailyTotalsContainer">
-        <div class="empty-message">No data yet. Once we read <code>daily_totals.json</code>, recent days for this park will appear here.</div>
+
+      <div class="kpi-row">
+        <div class="kpi">
+          <span class="kpi-label">Labor Percentage</span>
+          <span id="laborPercentage" class="kpi-value kpi-highlight">--%</span>
+          <span id="laborStatus" class="status-pill status-neutral">Waiting for inputs…</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label">Target</span>
+          <span class="kpi-value">
+            ≤ <span id="targetDisplay">18</span>%
+          </span>
+          <div class="muted">Configurable via <code>rates.json</code> (<code>target_percentage</code>)</div>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label">Calculated Labor Cost</span>
+          <span id="laborCost" class="kpi-value">$0.00</span>
+        </div>
       </div>
     </section>
-  </div>
+
+    <section class="card" id="dailyTotals">
+      <div class="daily-header">
+        <h2>Daily Totals</h2>
+        <small id="dailyTotalsMeta"></small>
+      </div>
+      <p class="muted" id="dailyTotalsMessage">
+        Choose a park above to see recent daily totals pulled from <code>daily_totals.json</code>.
+      </p>
+      <div id="dailyTotalsContent"></div>
+      <p class="info-line">
+        This calculator reads <code>rates.json</code> and <code>daily_totals.json</code> from GitHub Pages with a local
+        fallback for development.
+      </p>
+    </section>
+  </main>
 
   <script>
-    (function () {
-      "use strict";
+    // --------- CONFIG + FALLBACKS ---------
 
-      // --- Hard-coded fallback rates so parks always show, even if JSON fails ---
-      const FALLBACK_RATES = {
-        "Appleton": 17.32,
-        "Austell": 16.07,
-        "Gastonia": 16.99,
-        "Huntsville": 14.86,
-        "Lawrenceville": 13.55,
-        "Lombard": 18.87,
-        "Nashville": 17.10,
-        "Pueblo": 18.27,
-        "San Jose": 21.34,
-        "York": 18.22
+    const FALLBACK_RATES = {
+      "Appleton": 17.32,
+      "Austell": 16.07,
+      "Gastonia": 16.99,
+      "Huntsville": 14.86,
+      "Lawrenceville": 13.55,
+      "Lombard": 18.87,
+      "Nashville": 17.10,
+      "Pueblo": 18.27,
+      "San Jose": 21.34,
+      "York": 18.22
+    };
+
+    const DEFAULT_TARGET_PERCENTAGE = 18;
+
+    let hourlyRates = { ...FALLBACK_RATES };
+    let targetPercentage = DEFAULT_TARGET_PERCENTAGE;
+    let dailyTotals = null;
+    let selectedPark = "";
+
+    // --------- INIT ---------
+
+    document.addEventListener("DOMContentLoaded", () => {
+      wireInputs();
+      initApp();
+    });
+
+    function wireInputs() {
+      const hours = document.getElementById("laborHours");
+      const revenue = document.getElementById("revenue");
+
+      hours.addEventListener("input", updateCalculations);
+      revenue.addEventListener("input", updateCalculations);
+    }
+
+    async function initApp() {
+      await loadRates();
+      await loadDailyTotals();
+      populateParkSelect();
+      updateTargetDisplay();
+      updateCalculations();
+      updateDailyTotalsSection();
+    }
+
+    // --------- DATA LOADING ---------
+
+    async function loadRates() {
+      try {
+        const res = await fetch("rates.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        const parsed = parseRatesData(data);
+        hourlyRates = parsed.hourlyRates;
+        targetPercentage = parsed.targetPercentage;
+        console.log("Loaded rates from rates.json", parsed);
+      } catch (err) {
+        console.warn("Using fallback rates because rates.json could not be read:", err);
+        hourlyRates = { ...FALLBACK_RATES };
+        targetPercentage = DEFAULT_TARGET_PERCENTAGE;
+      }
+    }
+
+    function parseRatesData(data) {
+      const result = {
+        hourlyRates: {},
+        targetPercentage: DEFAULT_TARGET_PERCENTAGE
       };
 
-      // DOM elements
-      const parkSelect = document.getElementById("parkSelect");
-      const hoursInput = document.getElementById("hoursInput");
-      const revenueInput = document.getElementById("revenueInput");
-      const hourlyRateEl = document.getElementById("hourlyRate");
-      const laborPercentEl = document.getElementById("laborPercent");
+      if (!data || typeof data !== "object") {
+        return { hourlyRates: { ...FALLBACK_RATES }, targetPercentage: DEFAULT_TARGET_PERCENTAGE };
+      }
+
+      // Target percentage (several possible property names)
+      if (typeof data.target_percentage === "number") {
+        result.targetPercentage = data.target_percentage;
+      } else if (typeof data.targetPercent === "number") {
+        result.targetPercentage = data.targetPercent;
+      } else if (typeof data.target === "number") {
+        result.targetPercentage = data.target;
+      }
+
+      // Where are the parks?
+      // Prefer a nested "parks" object if present; otherwise use top-level.
+      let source = data.parks && typeof data.parks === "object" ? data.parks : data;
+
+      for (const [key, value] of Object.entries(source)) {
+        const lowerKey = key.toLowerCase();
+
+        // Ignore config-like keys
+        if (lowerKey.includes("target") || lowerKey.includes("percent")) continue;
+        if (value == null) continue;
+
+        if (typeof value === "number") {
+          result.hourlyRates[key] = value;
+        } else if (typeof value === "object") {
+          if (typeof value.hourly_rate === "number") {
+            result.hourlyRates[key] = value.hourly_rate;
+          } else if (typeof value.rate === "number") {
+            result.hourlyRates[key] = value.rate;
+          } else if (typeof value.wage === "number") {
+            result.hourlyRates[key] = value.wage;
+          }
+        }
+      }
+
+      if (Object.keys(result.hourlyRates).length === 0) {
+        // Fall back if nothing parseable
+        result.hourlyRates = { ...FALLBACK_RATES };
+      }
+
+      return result;
+    }
+
+    async function loadDailyTotals() {
+      try {
+        const res = await fetch("daily_totals.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        dailyTotals = await res.json();
+
+        const meta = document.getElementById("dailyTotalsMeta");
+        if (meta) {
+          const now = new Date();
+          meta.textContent = "Loaded daily_totals.json • " + now.toLocaleString();
+        }
+      } catch (err) {
+        console.warn("daily_totals.json not found or invalid, daily section will be empty:", err);
+        dailyTotals = null;
+        const meta = document.getElementById("dailyTotalsMeta");
+        if (meta) meta.textContent = "No daily_totals.json found";
+      }
+    }
+
+    // --------- UI UPDATES ---------
+
+    function populateParkSelect() {
+      const select = document.getElementById("parkSelect");
+      if (!select) return;
+
+      select.innerHTML = "";
+
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "-- Choose a Park --";
+      placeholder.disabled = true;
+      placeholder.selected = true;
+      select.appendChild(placeholder);
+
+      Object.keys(hourlyRates)
+        .sort((a, b) => a.localeCompare(b))
+        .forEach((name) => {
+          const opt = document.createElement("option");
+          opt.value = name;
+          opt.textContent = name;
+          select.appendChild(opt);
+        });
+
+      select.addEventListener("change", () => {
+        selectedPark = select.value;
+        updateParkInfo();
+      });
+    }
+
+    function updateParkInfo() {
+      const rateSpan = document.getElementById("hourlyRate");
+
+      if (!selectedPark || !hourlyRates[selectedPark]) {
+        rateSpan.textContent = "$0.00";
+      } else {
+        rateSpan.textContent = formatCurrency(hourlyRates[selectedPark]);
+      }
+
+      updateCalculations();
+      updateDailyTotalsSection();
+    }
+
+    function updateTargetDisplay() {
+      const el = document.getElementById("targetDisplay");
+      if (!el) return;
+      const val = Number.isFinite(targetPercentage) ? targetPercentage : DEFAULT_TARGET_PERCENTAGE;
+      // Avoid trailing ".0"
+      el.textContent = val.toFixed(1).replace(/\.0$/, "");
+    }
+
+    function updateCalculations() {
+      const hoursInput = document.getElementById("laborHours");
+      const revenueInput = document.getElementById("revenue");
+
+      const hours = parseFloat(hoursInput.value) || 0;
+      const revenue = parseFloat(revenueInput.value) || 0;
+      const rate = selectedPark && hourlyRates[selectedPark] ? hourlyRates[selectedPark] : 0;
+
+      const laborCost = hours * rate;
       const laborCostEl = document.getElementById("laborCost");
-      const statusPill = document.getElementById("statusPill");
-      const statusText = document.getElementById("statusText");
-      const deltaLabel = document.getElementById("deltaLabel");
+      laborCostEl.textContent = formatCurrency(laborCost);
 
-      const dailyStatus = document.getElementById("dailyStatus");
-      const dailyParkSelect = document.getElementById("dailyParkSelect");
-      const dailyTotalsContainer = document.getElementById("dailyTotalsContainer");
-
-      // Data
-      let parkRates = { ...FALLBACK_RATES };
-      let dailyTotals = []; // will be array of { park, date, revenue, labor_hours, labor_cost }
-
-      // --- Helpers ---
-      function formatCurrency(value) {
-        if (!isFinite(value)) return "$0.00";
-        return "$" + value.toFixed(2);
+      let percent = 0;
+      if (revenue > 0 && laborCost >= 0) {
+        percent = (laborCost / revenue) * 100;
       }
 
-      function formatPercent(value) {
-        if (!isFinite(value)) return "--";
-        return value.toFixed(1);
+      const percentEl = document.getElementById("laborPercentage");
+      if (!revenue || !hours || !selectedPark) {
+        percentEl.textContent = "--%";
+      } else {
+        percentEl.textContent = percent.toFixed(1) + "%";
       }
 
-      function setStatus(percent) {
-        statusPill.classList.remove("status-good", "status-ok", "status-warn", "status-bad");
+      const statusEl = document.getElementById("laborStatus");
+      statusEl.className = "status-pill"; // reset
 
-        if (!isFinite(percent)) {
-          statusText.textContent = "Waiting for inputs…";
-          deltaLabel.textContent = "";
-          deltaLabel.className = "";
-          return;
-        }
-
-        let label;
-        let cls;
-
-        if (percent <= 15) {
-          label = "Excellent – Below 15%";
-          cls = "status-good";
-        } else if (percent <= 18) {
-          label = "On Target – Meeting 18% goal";
-          cls = "status-ok";
-        } else if (percent <= 22) {
-          label = "Slightly Above Target";
-          cls = "status-warn";
-        } else if (percent <= 28) {
-          label = "High – Needs Attention";
-          cls = "status-bad";
-        } else {
-          label = "Critical – Significantly Over";
-          cls = "status-bad";
-        }
-
-        statusPill.classList.add(cls);
-        statusText.textContent = label;
-
-        const delta = percent - 18;
-        if (Math.abs(delta) < 0.05) {
-          deltaLabel.textContent = "Right at target.";
-          deltaLabel.className = "";
-        } else if (delta > 0) {
-          deltaLabel.textContent = "+" + delta.toFixed(1) + " pts above target";
-          deltaLabel.className = "delta-positive";
-        } else {
-          deltaLabel.textContent = delta.toFixed(1) + " pts below target";
-          deltaLabel.className = "delta-negative";
-        }
+      if (!selectedPark || !hours || !revenue) {
+        statusEl.textContent = "Waiting for inputs…";
+        statusEl.classList.add("status-neutral");
+        return;
       }
 
-      function getSelectedPark() {
-        return parkSelect.value || "";
+      if (percent <= 15) {
+        statusEl.textContent = "Excellent (≤ 15%)";
+        statusEl.classList.add("status-excellent");
+      } else if (percent <= targetPercentage) {
+        statusEl.textContent = "On Target (≤ " + targetPercentage + "%)";
+        statusEl.classList.add("status-good");
+      } else if (percent <= targetPercentage + 4) {
+        statusEl.textContent = "Slightly Above Target";
+        statusEl.classList.add("status-warn");
+      } else if (percent <= targetPercentage + 10) {
+        statusEl.textContent = "High — Needs Attention";
+        statusEl.classList.add("status-high");
+      } else {
+        statusEl.textContent = "Critical — Way Over";
+        statusEl.classList.add("status-critical");
+      }
+    }
+
+    function updateDailyTotalsSection() {
+      const msg = document.getElementById("dailyTotalsMessage");
+      const container = document.getElementById("dailyTotalsContent");
+      if (!msg || !container) return;
+
+      container.innerHTML = "";
+
+      if (!selectedPark) {
+        msg.textContent = "Choose a park above to see recent daily totals pulled from daily_totals.json.";
+        return;
       }
 
-      function getSelectedRate() {
-        const park = getSelectedPark();
-        const rate = parkRates[park];
-        return typeof rate === "number" ? rate : 0;
+      if (!dailyTotals) {
+        msg.textContent = "No daily_totals.json loaded. Daily section is informational only.";
+        return;
       }
 
-      function updateHourlyRateDisplay() {
-        const rate = getSelectedRate();
-        hourlyRateEl.innerHTML = "<strong>" + formatCurrency(rate) + "</strong> / hour";
+      const rows = getDailyRowsForPark(selectedPark);
+
+      if (!rows.length) {
+        msg.textContent =
+          "No daily totals found for “" +
+          selectedPark +
+          "”. Check that daily_totals.json includes this park.";
+        return;
       }
 
-      function recalc() {
-        updateHourlyRateDisplay();
+      msg.textContent = "";
 
-        const hours = parseFloat(hoursInput.value);
-        const revenue = parseFloat(revenueInput.value);
-        const rate = getSelectedRate();
+      const table = document.createElement("table");
+      table.className = "totals-table";
 
-        if (!isFinite(hours) || hours <= 0 || !isFinite(revenue) || revenue <= 0 || !isFinite(rate) || rate <= 0) {
-          laborCostEl.textContent = "$0.00";
-          laborPercentEl.innerHTML = "--<span class=\"small\">%</span>";
-          setStatus(NaN);
-          return;
-        }
+      const thead = document.createElement("thead");
+      thead.innerHTML = `
+        <tr>
+          <th>Date</th>
+          <th>Labor Hours</th>
+          <th>Revenue</th>
+          <th>Labor %</th>
+          <th>vs
 
-        const laborCost = hours * rate;
-        const laborPercent = (laborCost / revenue) * 100;
-
-        laborCostEl.textContent = formatCurrency(laborCost);
-        laborPercentEl.innerHTML = formatPercent(laborPercent) + "<span class=\"small\">%</span>";
-        setStatus(laborPercent);
-      }
-
-      function populateParkDropdowns() {
-        // Clear existing (except first placeholder option)
-        function resetSelect(selectEl, includeMatchOption) {
-          const first = selectEl.options[0];
-          selectEl.innerHTML = "";
-          selectEl.appendChild(first);
-          if (includeMatchOption) {
-            // first is already "-- Match selected park --"
-          }
-        }
-
-        resetSelect(parkSelect, false);
-        resetSelect(dailyParkSelect, true);
-
-        const parks = Object.keys(parkRates).sort();
-
-        parks.forEach((park) => {
-          const opt1 = document.createElement("option");
-          opt1.value = park;
-          opt1.textContent = park;
-          parkSelect.appendChild(opt1);
-
-          const opt2 = document.createElement("option");
-          opt2.value = park;
-          opt2.textContent = park;
-          dailyParkSelect.appendChild(opt2);
-        });
-      }
-
-      // --- Daily totals rendering ---
-      function parseDailyTotalsData(raw) {
-        const rows = [];
-
-        if (Array.isArray(raw)) {
-          raw.forEach((item) => {
-            if (!item || typeof item !== "object") return;
-            const park = item.park || item.Park || item.location;
-            const date = item.date || item.Date || item.day;
-            const revenue = Number(item.revenue ?? item.Revenue ?? item.sales ?? 0);
-            const hours = Number(item.labor_hours ?? item.hours ?? item.Hours ?? 0);
-            const cost = Number(item.labor_cost ?? item.cost ?? item.LaborCost ?? 0);
-            if (!park || !date) return;
-            rows.push({ park, date, revenue, labor_hours: hours, labor_cost: cost });
-          });
-        } else if (raw && typeof raw === "object") {
-          // Possibly { "Appleton": [ {...}, ... ], ... }
-          Object.keys(raw).forEach((park) => {
-            const list = raw[park];
-            if (!Array.isArray(list)) return;
-            list.forEach((item) => {
-              if (!item || typeof item !== "object") return;
-              const date = item.date || item.Date || item.day;
-              const revenue = Number(item.revenue ?? item.Revenue ?? item.sales ?? 0);
-              const hours = Number(item.labor_hours ?? item.hours ?? item.Hours ?? 0);
-              const cost = Number(item.labor_cost ?? item.cost ?? item.LaborCost ?? 0);
-              if (!date) return;
-              rows.push({ park, date, revenue, labor_hours: hours, labor_cost: cost });
-            });
-          });
-        }
-
-        return rows;
-      }
-
-      function renderDailyTotals() {
-        const selectedPark = dailyParkSelect.value || getSelectedPark();
-
-        if (!dailyTotals.length) {
-          dailyStatus.textContent = "No daily_totals data found yet.";
-          dailyTotalsContainer.innerHTML =
-            '<div class="empty-message">Once you add a <code>daily_totals.json</code> file, recent days for this park will show here.</div>';
-          return;
-        }
-
-        dailyStatus.textContent = "Loaded " + dailyTotals.length + " rows from daily_totals.json";
-
-        const filtered = selectedPark
-          ? dailyTotals.filter((row) => row.park === selectedPark)
-          : [];
-
-        if (!filtered.length) {
-          dailyTotalsContainer.innerHTML =
-            '<div class="empty-message">No daily totals found for this park yet.</div>';
-          return;
-        }
-
-        // Sort by date descending (assuming ISO yyyy-mm-dd)
-        filtered.sort((a, b) => {
-          if (a.date < b.date) return 1;
-          if (a.date > b.date) return -1;
-          return 0;
-        });
-
-        const rowsHtml = filtered.slice(0, 14).map((row) => {
-          const laborCost = row.labor_cost || (row.labor_hours && parkRates[row.park]
-            ? row.labor_hours * parkRates[row.park]
-            : 0);
-          const percent = row.revenue > 0 ? (laborCost / row.revenue) * 100 : NaN;
-          const pillClass = isFinite(percent) && percent <= 18 ? "pill-good" : "pill-bad";
-          const pillText = isFinite(percent) ? percent.toFixed(1) + "%" : "--";
-
-          return (
-            "<tr>" +
-              "<td>" + row.date + "</td>" +
-              "<td>" + row.park + "</td>" +
-              "<td>" + formatCurrency(row.revenue || 0) + "</td>" +
-              "<td>" + (row.labor_hours || 0).toFixed(2) + "</td>" +
-              "<td>" + formatCurrency(laborCost) + "</td>" +
-              "<td><span class=\"pill " + pillClass + "\">" + pillText + "</span></td>" +
-            "</tr>"
-          );
-        }).join("");
-
-        dailyTotalsContainer.innerHTML =
-          "<table>" +
-          "<thead>" +
-            "<tr>" +
-              "<th>Date</th>" +
-              "<th>Park</th>" +
-              "<th>Revenue</th>" +
-              "<th>Hours</th>" +
-              "<th>Labor Cost</th>" +
-              "<th>Labor %</th>" +
-            "</tr>" +
-          "</thead>" +
-          "<tbody>" + rowsHtml + "</tbody>" +
-          "</table>";
-      }
-
-      // --- Data loading from JSON (with graceful fallback) ---
-      async function tryLoadRatesFromJson() {
-        try {
-          const res = await fetch("rates.json", { cache: "no-store" });
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          const data = await res.json();
-
-          const parsed = {};
-          if (Array.isArray(data)) {
-            data.forEach((item) => {
-              if (!item || typeof item !== "object") return;
-              const name = item.park || item.name || item.location;
-              const rate = Number(item.rate ?? item.hourly_rate ?? item.Rate);
-              if (name && isFinite(rate)) parsed[name] = rate;
-            });
-          } else if (data && typeof data === "object") {
-            Object.keys(data).forEach((key) => {
-              const value = data[key];
-              if (typeof value === "number" && isFinite(value)) {
-                parsed[key] = value;
-              } else if (value && typeof value === "object") {
-                const rate = Number(value.rate ?? value.hourly_rate ?? value.Rate);
-                if (isFinite(rate)) parsed[key] = rate;
-              }
-            });
-          }
-
-          if (Object.keys(parsed).length) {
-            parkRates = parsed;
-          }
-        } catch (err) {
-          // If anything fails, we just keep FALLBACK_RATES
-          console.warn("Using fallback rates:", err);
-        }
-      }
-
-      async function tryLoadDailyTotalsFromJson() {
-        try {
-          const res = await fetch("daily_totals.json", { cache: "no-store" });
-          if (!res.ok) {
-            dailyStatus.textContent = "daily_totals.json not found yet – that’s OK.";
-            return;
-          }
-          const raw = await res.json();
-          const parsed = parseDailyTotalsData(raw);
-          if (parsed.length) {
-            dailyTotals = parsed;
-            dailyStatus.textContent = "Loaded daily_totals.json (" + parsed.length + " rows).";
-          } else {
-            dailyStatus.textContent = "daily_totals.json loaded but no usable rows were found.";
-          }
-        } catch (err) {
-          console.warn("Failed to load daily_totals.json:", err);
-          dailyStatus.textContent = "Could not read daily_totals.json (check format).";
-        }
-        renderDailyTotals();
-      }
-
-      // --- Wire up events and kick things off ---
-      parkSelect.addEventListener("change", () => {
-        recalc();
-        // If daily park is "match selected", update view
-        if (!dailyParkSelect.value) {
-          renderDailyTotals();
-        }
-      });
-
-      hoursInput.addEventListener("input", recalc);
-      revenueInput.addEventListener("input", recalc);
-
-      dailyParkSelect.addEventListener("change", () => {
-        renderDailyTotals();
-      });
-
-      // Initial load
-      (async function init() {
-        await tryLoadRatesFromJson();
-        populateParkDropdowns();
-        updateHourlyRateDisplay();
-        recalc();
-        await tryLoadDailyTotalsFromJson();
-      })();
-    })();
-  </script>
-</body>
-</html>
 
