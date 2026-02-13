@@ -1,534 +1,114 @@
 {
-  "weekOf": "1/26/26",
+  "weekOf": "2/9/26",
   "parks": {
     "Appleton": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 38.15,
-          "cost": 627.57,
-          "revenue": 3148.18,
-          "pct": 19.93
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "Austell": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 50.79,
-          "cost": 893.9,
-          "revenue": 4746.43,
-          "pct": 18.83
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "Gastonia": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 1893.54,
-          "pct": 0.0
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "Huntsville": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 27.75,
-          "cost": 472.31,
-          "revenue": 1833.45,
-          "pct": 25.76
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "Lawrenceville": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 74.84,
-          "cost": 1089.67,
-          "revenue": 6914.46,
-          "pct": 15.76
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "Lombard": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 32.47,
-          "cost": 624.4,
-          "revenue": 1189.55,
-          "pct": 52.49
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "Nashville": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 18.15,
-          "cost": 301.83,
-          "revenue": 2208.0,
-          "pct": 13.67
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "Pueblo": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 34.53,
-          "cost": 678.17,
-          "revenue": 2845.57,
-          "pct": 23.83
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "San Jose": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 46.53,
-          "cost": 1009.24,
-          "revenue": 3834.24,
-          "pct": 26.32
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     },
     "York": {
       "days": [
-        {
-          "dow": "Mon",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 1001.74,
-          "pct": 0.0
-        },
-        {
-          "dow": "Tue",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Wed",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Thu",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Fri",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sat",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        },
-        {
-          "dow": "Sun",
-          "hours": 0.0,
-          "cost": 0.0,
-          "revenue": 0.0,
-          "pct": 0.0
-        }
+        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
       ]
     }
   }
