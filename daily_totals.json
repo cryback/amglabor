@@ -3,10 +3,10 @@
   "parks": {
     "Appleton": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 66.12, "cost": 0.0, "revenue": 2828.08, "pct": 0.0 },
+        { "dow": "Tue", "hours": 32.2, "cost": 0.0, "revenue": 3417.77, "pct": 0.0 },
+        { "dow": "Wed", "hours": 34.71, "cost": 0.0, "revenue": 3259.01, "pct": 0.0 },
+        { "dow": "Thu", "hours": 36.1, "cost": 0.0, "revenue": 3570.47, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
@@ -14,7 +14,7 @@
     },
     "Austell": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 35.55, "cost": 0.0, "revenue": 1058.16, "pct": 0.0 },
         { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
