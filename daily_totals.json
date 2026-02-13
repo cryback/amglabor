@@ -25,10 +25,10 @@
     },
     "Gastonia": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 38.25, "cost": 0.0, "revenue": 1702.67, "pct": 0.0 },
+        { "dow": "Tue", "hours": 31.67, "cost": 0.0, "revenue": 2169.45, "pct": 0.0 },
+        { "dow": "Wed", "hours": 38.83, "cost": 0.0, "revenue": 1540.02, "pct": 0.0 },
+        { "dow": "Thu", "hours": 50.92, "cost": 0.0, "revenue": 2367.42, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
@@ -36,10 +36,10 @@
     },
     "Huntsville": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 28.64, "cost": 0.0, "revenue": 1072.5, "pct": 0.0 },
+        { "dow": "Tue", "hours": 32.95, "cost": 0.0, "revenue": 1767.95, "pct": 0.0 },
+        { "dow": "Wed", "hours": 37.9, "cost": 0.0, "revenue": 1558.74, "pct": 0.0 },
+        { "dow": "Thu", "hours": 34.72, "cost": 0.0, "revenue": 1512.57, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
@@ -47,10 +47,10 @@
     },
     "Lawrenceville": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 46.34, "cost": 0.0, "revenue": 3359.76, "pct": 0.0 },
+        { "dow": "Tue", "hours": 42.48, "cost": 0.0, "revenue": 2610.87, "pct": 0.0 },
+        { "dow": "Wed", "hours": 73.75, "cost": 0.0, "revenue": 7018.59, "pct": 0.0 },
+        { "dow": "Thu", "hours": 101.42, "cost": 0.0, "revenue": 7001.63, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
@@ -58,10 +58,10 @@
     },
     "Lombard": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 33.78, "cost": 0.0, "revenue": 1901.74, "pct": 0.0 },
+        { "dow": "Tue", "hours": 31.43, "cost": 0.0, "revenue": 1862.17, "pct": 0.0 },
+        { "dow": "Wed", "hours": 29.77, "cost": 0.0, "revenue": 1951.94, "pct": 0.0 },
+        { "dow": "Thu", "hours": 31.45, "cost": 0.0, "revenue": 1780.05, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
@@ -69,10 +69,10 @@
     },
     "Nashville": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 52.56, "cost": 0.0, "revenue": 1929.47, "pct": 0.0 },
+        { "dow": "Tue", "hours": 28.83, "cost": 0.0, "revenue": 2244.42, "pct": 0.0 },
+        { "dow": "Wed", "hours": 39.97, "cost": 0.0, "revenue": 4433.17, "pct": 0.0 },
+        { "dow": "Thu", "hours": 24.84, "cost": 0.0, "revenue": 3076.78, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
@@ -80,10 +80,10 @@
     },
     "Pueblo": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 6.88, "cost": 0.0, "revenue": 1234.92, "pct": 0.0 },
+        { "dow": "Tue", "hours": 6.18, "cost": 0.0, "revenue": 1921.4, "pct": 0.0 },
+        { "dow": "Wed", "hours": 18.95, "cost": 0.0, "revenue": 1743.55, "pct": 0.0 },
+        { "dow": "Thu", "hours": 5.08, "cost": 0.0, "revenue": 1284.85, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
@@ -91,10 +91,10 @@
     },
     "San Jose": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 39.87, "cost": 0.0, "revenue": 2769.44, "pct": 0.0 },
+        { "dow": "Tue", "hours": 45.09, "cost": 0.0, "revenue": 2669.82, "pct": 0.0 },
+        { "dow": "Wed", "hours": 38.98, "cost": 0.0, "revenue": 4268.56, "pct": 0.0 },
+        { "dow": "Thu", "hours": 42.17, "cost": 0.0, "revenue": 3268.64, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
@@ -102,10 +102,10 @@
     },
     "York": {
       "days": [
-        { "dow": "Mon", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Tue", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Wed", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
-        { "dow": "Thu", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
+        { "dow": "Mon", "hours": 32.34, "cost": 0.0, "revenue": 1515.32, "pct": 0.0 },
+        { "dow": "Tue", "hours": 34.82, "cost": 0.0, "revenue": 1576.22, "pct": 0.0 },
+        { "dow": "Wed", "hours": 30.94, "cost": 0.0, "revenue": 1568.49, "pct": 0.0 },
+        { "dow": "Thu", "hours": 32.03, "cost": 0.0, "revenue": 1979.58, "pct": 0.0 },
         { "dow": "Fri", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sat", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 },
         { "dow": "Sun", "hours": 0.0, "cost": 0.0, "revenue": 0.0, "pct": 0.0 }
