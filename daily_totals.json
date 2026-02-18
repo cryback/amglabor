@@ -21,35 +21,35 @@
           "dow": "Wed",
           "hours": 0.0,
           "cost": 0.0,
-          "revenue": 3570.47,
+          "revenue": 0.0,
           "pct": 0.0
         },
         {
           "dow": "Thu",
           "hours": 0.0,
           "cost": 0.0,
-          "revenue": 8123.91,
+          "revenue": 0.0,
           "pct": 0.0
         },
         {
           "dow": "Fri",
           "hours": 0.0,
           "cost": 0.0,
-          "revenue": 17608.83,
+          "revenue": 0.0,
           "pct": 0.0
         },
         {
           "dow": "Sat",
           "hours": 0.0,
           "cost": 0.0,
-          "revenue": 12001.07,
+          "revenue": 0.0,
           "pct": 0.0
         },
         {
           "dow": "Sun",
           "hours": 0.0,
           "cost": 0.0,
-          "revenue": 2828.08,
+          "revenue": 0.0,
           "pct": 0.0
         }
       ]
