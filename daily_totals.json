@@ -42,8 +42,8 @@
           "dow": "Sat",
           "hours": 87.11,
           "cost": 1432.96,
-          "revenue": 17109.06,
-          "pct": 8.38
+          "revenue": 17378.06,
+          "pct": 8.25
         },
         {
           "dow": "Sun",
@@ -95,8 +95,8 @@
           "dow": "Sat",
           "hours": 99.18,
           "cost": 1745.57,
-          "revenue": 10685.91,
-          "pct": 16.34
+          "revenue": 10810.38,
+          "pct": 16.15
         },
         {
           "dow": "Sun",
@@ -148,8 +148,8 @@
           "dow": "Sat",
           "hours": 102.26,
           "cost": 1784.44,
-          "revenue": 14486.19,
-          "pct": 12.32
+          "revenue": 14503.19,
+          "pct": 12.3
         },
         {
           "dow": "Sun",
@@ -201,8 +201,8 @@
           "dow": "Sat",
           "hours": 62.46,
           "cost": 1063.07,
-          "revenue": 12337.19,
-          "pct": 8.62
+          "revenue": 12505.15,
+          "pct": 8.5
         },
         {
           "dow": "Sun",
@@ -254,8 +254,8 @@
           "dow": "Sat",
           "hours": 112.34,
           "cost": 1635.67,
-          "revenue": 16219.37,
-          "pct": 10.08
+          "revenue": 16570.85,
+          "pct": 9.87
         },
         {
           "dow": "Sun",
@@ -307,8 +307,8 @@
           "dow": "Sat",
           "hours": 53.27,
           "cost": 1024.38,
-          "revenue": 9988.42,
-          "pct": 10.26
+          "revenue": 10082.06,
+          "pct": 10.16
         },
         {
           "dow": "Sun",
@@ -360,8 +360,8 @@
           "dow": "Sat",
           "hours": 82.11,
           "cost": 1365.49,
-          "revenue": 13689.11,
-          "pct": 9.98
+          "revenue": 13863.81,
+          "pct": 9.85
         },
         {
           "dow": "Sun",
@@ -413,8 +413,8 @@
           "dow": "Sat",
           "hours": 35.36,
           "cost": 694.47,
-          "revenue": 9223.88,
-          "pct": 7.53
+          "revenue": 9326.19,
+          "pct": 7.45
         },
         {
           "dow": "Sun",
@@ -466,8 +466,8 @@
           "dow": "Sat",
           "hours": 142.04,
           "cost": 3080.85,
-          "revenue": 14819.07,
-          "pct": 20.79
+          "revenue": 14943.03,
+          "pct": 20.62
         },
         {
           "dow": "Sun",
@@ -519,8 +519,8 @@
           "dow": "Sat",
           "hours": 50.86,
           "cost": 1027.37,
-          "revenue": 7191.64,
-          "pct": 14.29
+          "revenue": 7218.93,
+          "pct": 14.23
         },
         {
           "dow": "Sun",
