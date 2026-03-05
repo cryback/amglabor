@@ -323,10 +323,10 @@
       "days": [
         {
           "dow": "Mon",
-          "hours": 30.9,
-          "cost": 488.84,
+          "hours": 40.52,
+          "cost": 641.03,
           "revenue": 3511.69,
-          "pct": 13.92
+          "pct": 18.25
         },
         {
           "dow": "Tue",
