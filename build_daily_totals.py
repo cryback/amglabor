@@ -134,6 +134,11 @@ def main():
     parks: Dict[str, Dict[str, Dict[str, Any]]] = defaultdict(dict)
 
     for r in rows:
+        # Filter: only process rows matching the target weekOf
+        row_week_of = (r.get("weekOf") or r.get("WeekOf") or r.get("week_of") or "").strip()
+        if row_week_of != week_of:
+            continue  # Skip rows from other weeks
+        
         park = (r.get("park") or r.get("Park") or r.get("location") or "").strip()
         if not park:
             print("Skipping row with empty park:", r); continue
